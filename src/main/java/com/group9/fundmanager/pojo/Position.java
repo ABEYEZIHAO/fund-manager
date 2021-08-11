@@ -9,10 +9,10 @@ import javax.persistence.Table;
 import java.util.Date;
 
 @Entity
-@Table(name = "Positions")
+@Table(name = "positions")
 public class Position {
 
-    @p_id
+    @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "p_id")
     private long p_id;
