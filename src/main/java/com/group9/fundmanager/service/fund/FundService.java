@@ -1,10 +1,9 @@
 package com.group9.fundmanager.service.fund;
 
 import com.group9.fundmanager.dao.fund.FundDao;
+import com.group9.fundmanager.exception.EntityNotFoundException;
 import com.group9.fundmanager.pojo.Fund;
-import com.group9.fundmanager.pojo.Manager;
-import com.group9.fundmanager.exception.FundNameAlreadyInUseException;
-import org.hibernate.engine.spi.Managed;
+import com.group9.fundmanager.exception.NameAlreadyInUseException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -15,7 +14,6 @@ import org.springframework.ui.Model;
 
 import java.util.List;
 import java.util.Optional;
-import java.util.concurrent.ForkJoinPool;
 
 /**
  * @author abe
@@ -47,7 +45,7 @@ public class FundService {
         if (fund.isPresent()) {
             return fund.get();
         } else {
-            throw new com.group9.fundmanager.exception.FundNotFoundException(id);
+            throw new EntityNotFoundException(id);
         }
     }
 
@@ -58,7 +56,7 @@ public class FundService {
     public void addNewFund(Fund newFund) {
         Optional<Fund> existingUser = fundDao.findFundByName(newFund.getName());
         if(existingUser.isPresent()){
-            throw new FundNameAlreadyInUseException(newFund.getName());
+            throw new NameAlreadyInUseException(newFund.getName());
         }
         fundDao.save(newFund);
     }
@@ -72,7 +70,7 @@ public class FundService {
             fundDao.deleteById(id);
         }
         else{
-            throw new com.group9.fundmanager.exception.FundNotFoundException(id);
+            throw new EntityNotFoundException(id);
         }
     }
 

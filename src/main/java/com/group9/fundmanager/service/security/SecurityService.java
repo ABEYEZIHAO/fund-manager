@@ -1,8 +1,8 @@
 package com.group9.fundmanager.service.security;
 
-import com.group9.fundmanager.dao.manager.ManagerDao;
 import com.group9.fundmanager.dao.security.SecurityDao;
-import com.group9.fundmanager.pojo.Manager;
+import com.group9.fundmanager.exception.NameAlreadyInUseException;
+import com.group9.fundmanager.exception.EntityNotFoundException;
 import com.group9.fundmanager.pojo.Security;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -45,7 +45,7 @@ public class SecurityService {
         if (security.isPresent()) {
             return security.get();
         } else {
-            throw new com.groupnine.fundmanager.exception.FundNotFoundException(id);
+            throw new EntityNotFoundException(id);
         }
     }
 
@@ -56,7 +56,7 @@ public class SecurityService {
     public void addNewSecurity(Security newSecurity) {
         Optional<Security> existingSecurity = securityDao.findSecurityBySymbol(newSecurity.getSymbol());
         if(existingSecurity.isPresent()){
-            throw new com.groupnine.fundmanager.exception.FundNameAlreadyInUseException(newSecurity.getSymbol());
+            throw new NameAlreadyInUseException(newSecurity.getSymbol());
         }
         securityDao.save(newSecurity);
     }
@@ -70,7 +70,7 @@ public class SecurityService {
             securityDao.deleteById(id);
         }
         else{
-            throw new com.groupnine.fundmanager.exception.FundNotFoundException(id);
+            throw new EntityNotFoundException(id);
         }
     }
 

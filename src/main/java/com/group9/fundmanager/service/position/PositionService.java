@@ -1,8 +1,7 @@
 package com.group9.fundmanager.service.position;
 
-import com.group9.fundmanager.dao.fund.FundDao;
 import com.group9.fundmanager.dao.position.PositionDao;
-import com.group9.fundmanager.pojo.Fund;
+import com.group9.fundmanager.exception.EntityNotFoundException;
 import com.group9.fundmanager.pojo.Position;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -45,7 +44,7 @@ public class PositionService {
         if (position.isPresent()) {
             return position.get();
         } else {
-            throw new com.group9.fundmanager.exception.FundNotFoundException(id);
+            throw new EntityNotFoundException(id);
         }
     }
 
@@ -70,7 +69,7 @@ public class PositionService {
             positionDao.deleteById(id);
         }
         else{
-            throw new com.group9.fundmanager.exception.FundNotFoundException(id);
+            throw new EntityNotFoundException(id);
         }
     }
 

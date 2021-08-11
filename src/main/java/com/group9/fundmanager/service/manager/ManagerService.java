@@ -1,8 +1,8 @@
 package com.group9.fundmanager.service.manager;
 
-import com.group9.fundmanager.dao.fund.FundDao;
 import com.group9.fundmanager.dao.manager.ManagerDao;
-import com.group9.fundmanager.pojo.Fund;
+import com.group9.fundmanager.exception.NameAlreadyInUseException;
+import com.group9.fundmanager.exception.EntityNotFoundException;
 import com.group9.fundmanager.pojo.Manager;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -45,7 +45,7 @@ public class ManagerService {
         if (manager.isPresent()) {
             return manager.get();
         } else {
-            throw new com.group9.fundmanager.exception.FundNotFoundException(id);
+            throw new EntityNotFoundException(id);
         }
     }
 
@@ -56,7 +56,7 @@ public class ManagerService {
     public void addNewManager(Manager newManager) {
         Optional<Manager> existingManage = managerDao.findManagerByFullName(newManager.getManagerName());
         if(existingManage.isPresent()){
-            throw new com.group9.fundmanager.exception.FundNameAlreadyInUseException(newManager.getManagerName());
+            throw new NameAlreadyInUseException(newManager.getManagerName());
         }
         managerDao.save(newManager);
     }
@@ -70,7 +70,7 @@ public class ManagerService {
             managerDao.deleteById(id);
         }
         else{
-            throw new com.group9.fundmanager.exception.FundNotFoundException(id);
+            throw new EntityNotFoundException(id);
         }
     }
 
