@@ -31,19 +31,19 @@ public class ManagerController {
     @PostMapping("/managers")
     public String addManager(Manager newManager) throws Exception {
         managerService.addNewManager(newManager);
-        return "redirect:/managers";
+        return "redirect:managers";
     }
 
     @DeleteMapping("/managers/{id}")
     public String deleteManager(@PathVariable("id") Long id) throws Exception {
         managerService.deleteManager(id);
-        return "redirect:/managers";
+        return "redirect:managers";
     }
 
     @PutMapping("/managers/{id}")
     public String updateManager(Manager newManager) throws Exception {
         managerService.updateManager(newManager);
-        return "redirect:/managers";
+        return "redirect:managers";
     }
 
     @GetMapping("/managers/{id}")

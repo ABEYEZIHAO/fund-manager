@@ -7,23 +7,38 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+/**
+ * @author abe
+ */
 @Entity
 @Table(name = "securities")
 public class Security {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long securityId;
+    private Long id;
 
     @Column(name = "symbol")
     private String symbol;
 
 
-    public long getSecurityId() {
-        return securityId;
+    public Security() {
     }
-    public void setSecurityId(Long securityId) {
-        this.securityId = securityId;
+
+    public Security(String symbol) {
+        this.symbol = symbol;
+    }
+
+    public Security(Long id, String symbol) {
+        this.id = id;
+        this.symbol = symbol;
+    }
+
+    public Long getId() {
+        return id;
+    }
+    public void setId(Long securityId) {
+        this.id = securityId;
     }
 
     public String getSymbol() {
