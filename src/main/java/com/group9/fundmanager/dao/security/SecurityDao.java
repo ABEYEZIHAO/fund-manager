@@ -1,6 +1,5 @@
 package com.group9.fundmanager.dao.security;
 
-import com.group9.fundmanager.pojo.Manager;
 import com.group9.fundmanager.pojo.Security;
 import org.springframework.data.jpa.repository.JpaRepository;
 
