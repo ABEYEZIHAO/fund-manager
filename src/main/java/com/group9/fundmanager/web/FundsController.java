@@ -1,4 +1,6 @@
-package com.dennis.springboot.web;
+package com.group9.fundmanager.web;
+import com.group9.fundmanager.dao.FundDao;
+import com.group9.fundmanager.pojo.Fund;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -13,13 +15,10 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import com.dennis.springboot.dao.FundDao;
-import com.dennis.springboot.pojo.Fund;
-
 @Controller
 public class FundsController {
 	@Autowired
-	FundDao fundDAO;
+    FundDao fundDAO;
 	
     @GetMapping("/funds")
     public String listFund(Model m,@RequestParam(value = "start", defaultValue = "0") int start,@RequestParam(value = "size", defaultValue = "5") int size) throws Exception {

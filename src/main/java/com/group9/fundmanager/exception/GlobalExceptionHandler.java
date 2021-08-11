@@ -1,4 +1,4 @@
-package com.dennis.springboot.exception;
+package com.group9.fundmanager.exception;
 
 
 import javax.servlet.http.HttpServletRequest;
