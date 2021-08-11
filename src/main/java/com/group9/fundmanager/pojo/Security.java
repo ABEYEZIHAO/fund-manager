@@ -8,11 +8,11 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "Securities")
+@Table(name = "securities")
 public class Security
 {
 
-    @s_id
+    @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "s_id")
     private long s_id;
@@ -21,15 +21,13 @@ public class Security
     private String symbol;
 
 
-    public long s_id() {
+    public long getS_id() {
         return s_id;
     }
     public void setS_id(long s_id) {
         this.s_id = s_id;
     }
-    public long getS_id() {
-        return s_id;
-    }
+
     public String getSymbol() {
         return symbol;
     }
