@@ -2,6 +2,7 @@ package com.group9.fundmanager.service.fund;
 
 import com.group9.fundmanager.dao.fund.FundDao;
 import com.group9.fundmanager.pojo.Fund;
+import com.groupnine.fundmanager.exception.FundNameAlreadyInUseException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -9,7 +10,6 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.List;
 import java.util.Optional;
@@ -55,7 +55,7 @@ public class FundService {
     public void addNewFund(Fund newFund) {
         Optional<Fund> existingUser = fundDao.findFundByName(newFund.getName());
         if(existingUser.isPresent()){
-            throw new com.groupnine.fundmanager.exception.FundNameAlreadyInUseException(newFund.getName());
+            throw new FundNameAlreadyInUseException(newFund.getName());
         }
         fundDao.save(newFund);
     }

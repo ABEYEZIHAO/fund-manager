@@ -1,24 +1,28 @@
 package com.group9.fundmanager.pojo;
 
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.JsonIdentityReference;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 
 import javax.persistence.*;
 import java.util.List;
 
 @Entity
 @Table(name = "managers")
+@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id")
 public class Manager {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id")
-    private Long managerId;
+    private Long id;
 
     @Column(name = "first_name")
     private String firstName;
 
     @Column(name = "last_name")
     private String lastName;
+
+    private String fullName;
 
     @OneToMany(mappedBy = "manager", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JsonIdentityReference(alwaysAsId = true)
@@ -27,18 +31,25 @@ public class Manager {
     public Manager() {
     }
 
-    public Manager(Long managerId, String firstName, String lastName, List<Fund> funds) {
-        this.managerId = managerId;
+    public Manager(Long id, String firstName, String lastName) {
+        this.id = id;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.fullName = firstName + ' ' + lastName;
+    }
+
+    public Manager(Long id, String firstName, String lastName, List<Fund> funds) {
+        this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;
         this.funds = funds;
     }
 
     public Long getId() {
-        return managerId;
+        return id;
     }
     public void setId(Long managerId) {
-        this.managerId = managerId;
+        this.id = managerId;
     }
     public String getFirstName() {
         return firstName;
@@ -51,6 +62,10 @@ public class Manager {
     }
     public void setLastName(String lastName) {
         this.lastName = lastName;
+    }
+
+    public String getManagerName() {
+        return fullName;
     }
 
     public List<Fund> getFunds() {

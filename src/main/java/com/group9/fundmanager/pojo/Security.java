@@ -13,7 +13,6 @@ public class Security {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "s_id")
     private Long securityId;
 
     @Column(name = "symbol")

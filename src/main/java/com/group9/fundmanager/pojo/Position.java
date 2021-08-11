@@ -6,6 +6,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import java.time.LocalDate;
 import java.util.Date;
 
 @Entity
@@ -14,7 +15,6 @@ public class Position {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "p_id")
     private Long positionId;
 
     @Column(name = "s_id")
@@ -24,12 +24,12 @@ public class Position {
     private int quantity;
 
     @Column(name = "date")
-    private Date date;
+    private LocalDate date;
 
     public Position() {
     }
 
-    public Position(Long positionId, Long securityId, int quantity, Date date) {
+    public Position(Long positionId, Long securityId, int quantity, LocalDate date) {
         this.positionId = positionId;
         this.securityId = securityId;
         this.quantity = quantity;
@@ -60,11 +60,11 @@ public class Position {
         this.quantity = quantity;
     }
 
-    public Date getDate() {
+    public LocalDate getDate() {
         return date;
     }
 
-    public void setDate(Date date) {
+    public void setDate(LocalDate date) {
         this.date = date;
     }
 }

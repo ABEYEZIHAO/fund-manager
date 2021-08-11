@@ -1,6 +1,8 @@
 package com.group9.fundmanager.pojo;
 
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.JsonIdentityReference;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 
 import javax.persistence.*;
 import java.sql.ClientInfoStatus;
@@ -9,18 +11,18 @@ import java.util.jar.Manifest;
 
 @Entity
 @Table(name = "funds")
+@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id")
 public class Fund {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "id")
-	private Long fundId;
+	private Long id;
 
 	@Column(name = "name")
-	private String fundName;
+	private String name;
 
 	@ManyToOne(optional = false)
-	@JoinColumn(name = "id")
+	@JoinColumn(name = "manager_id")
 	@JsonIdentityReference(alwaysAsId = true)
 	private Manager manager;
 
@@ -32,28 +34,34 @@ public class Fund {
 	public Fund() {
 	}
 
+	public Fund(Long id, String name) {
+		this.id = id;
+		this.name = name;
+	}
+
 	public Fund(Long fundId, String fundName, Manager manager, List<Position> positions) {
-		this.fundId = fundId;
-		this.fundName = fundName;
+		this.id = fundId;
+		this.name = fundName;
 		this.manager = manager;
 		this.positions = positions;
 	}
 
-	public Long getFundId() {
-		return fundId;
+	public Long getId() {
+		return id;
 	}
 
-	public void setFundId(Long fundId) {
-		this.fundId = fundId;
+	public void setId(Long id) {
+		this.id = id;
 	}
 
-	public String getFundName() {
-		return fundName;
+	public String getName() {
+		return name;
 	}
 
-	public void setFundName(String fundName) {
-		this.fundName = fundName;
+	public void setName(String name) {
+		this.name = name;
 	}
+
 
 	public Manager getManager() {
 		return manager;
