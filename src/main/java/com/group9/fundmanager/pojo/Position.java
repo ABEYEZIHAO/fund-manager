@@ -12,7 +12,7 @@ import java.util.Date;
 @Table(name = "Positions")
 public class Positions {
 
-    @Id
+    @p_id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "p_id")
     private long p_id;
