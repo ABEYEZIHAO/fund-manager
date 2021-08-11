@@ -1,6 +1,5 @@
 package com.group9.fundmanager.web.fund;
 import com.group9.fundmanager.pojo.Fund;
-import com.group9.fundmanager.pojo.Manager;
 import com.group9.fundmanager.service.fund.FundService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -11,8 +10,6 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-
-import java.util.List;
 
 /**
  * @author dennis
@@ -34,19 +31,19 @@ public class FundsController {
 	@PostMapping("/funds")
     public String addFund(Fund newFund) throws Exception {
     	fundService.addNewFund(newFund);
-    	return "redirect:/funds";
+    	return "redirect:funds";
     }
 
     @DeleteMapping("/funds/{id}")
     public String deleteFund(@PathVariable("id") Long id) throws Exception {
         fundService.deleteFund(id);
-    	return "redirect:/funds";
+    	return "redirect:funds";
     }
 
     @PutMapping("/funds/{id}")
     public String updateFund(Fund newFund) throws Exception {
         fundService.updateFund(newFund);
-    	return "redirect:/funds";
+    	return "redirect:funds";
     }
 
     @GetMapping("/funds/{id}")
