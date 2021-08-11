@@ -1,11 +1,8 @@
 package com.group9.fundmanager.pojo;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import com.fasterxml.jackson.annotation.JsonIdentityReference;
+
+import javax.persistence.*;
 import java.util.List;
 
 @Entity
@@ -23,13 +20,14 @@ public class Manager {
     @Column(name = "last_name")
     private String lastName;
 
-    @Column(name = "funds")
-    private List<Long> funds;
+    @OneToMany(mappedBy = "manager", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @JsonIdentityReference(alwaysAsId = true)
+    private List<Fund> funds;
 
     public Manager() {
     }
 
-    public Manager(Long id, String firstName, String lastName, List<Long> funds) {
+    public Manager(Long id, String firstName, String lastName, List<Fund> funds) {
         this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;
@@ -55,10 +53,10 @@ public class Manager {
         this.lastName = lastName;
     }
 
-    public List<Long> getFunds() {
+    public List<Fund> getFunds() {
         return funds;
     }
-    public void setFunds(List<Long> funds) {
+    public void setFunds(List<Fund> funds) {
         this.funds = funds;
     }
 

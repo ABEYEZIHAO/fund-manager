@@ -1,8 +1,11 @@
 package com.group9.fundmanager.pojo;
 
+import com.fasterxml.jackson.annotation.JsonIdentityReference;
+
 import javax.persistence.*;
 import java.sql.ClientInfoStatus;
 import java.util.List;
+import java.util.jar.Manifest;
 
 @Entity
 @Table(name = "funds")
@@ -16,19 +19,21 @@ public class Fund {
 	@Column(name = "name")
 	private String name;
 
-	@Column(name = "m_id")
-	private Long managerId;
+	@ManyToOne
+	@JsonIdentityReference(alwaysAsId = true)
+	private Manager manager;
 
-	@Column(name = "positions")
-	private List<Long> positions;
+	@OneToMany
+	@JsonIdentityReference(alwaysAsId = true)
+	private List<Position> positions;
 
 	public Fund() {
 	}
 
-	public Fund(Long id, String name, Long managerId, List<Long> positions) {
+	public Fund(Long id, String name, Manager manager, List<Position> positions) {
 		this.id = id;
 		this.name = name;
-		this.managerId = managerId;
+		this.manager = manager;
 		this.positions = positions;
 	}
 
@@ -46,17 +51,17 @@ public class Fund {
 		this.name = name;
 	}
 
-	public long getManagerId() {
-		return managerId;
+	public Manager getManager() {
+		return manager;
 	}
-	public void setManagerId(Long managerId) {
-		this.managerId = managerId;
+	public void setManager(Manager manager) {
+		this.manager = manager;
 	}
 
-	public List<Long> getPositions() {
+	public List<Position> getPositions() {
 		return positions;
 	}
-	public void setPositions(List<Long> positions) {
+	public void setPositions(List<Position> positions) {
 		this.positions = positions;
 	}
 }
