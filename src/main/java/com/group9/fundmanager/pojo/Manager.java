@@ -12,7 +12,7 @@ public class Manager {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
-    private Long id;
+    private Long managerId;
 
     @Column(name = "first_name")
     private String firstName;
@@ -27,18 +27,18 @@ public class Manager {
     public Manager() {
     }
 
-    public Manager(Long id, String firstName, String lastName, List<Fund> funds) {
-        this.id = id;
+    public Manager(Long managerId, String firstName, String lastName, List<Fund> funds) {
+        this.managerId = managerId;
         this.firstName = firstName;
         this.lastName = lastName;
         this.funds = funds;
     }
 
     public Long getId() {
-        return id;
+        return managerId;
     }
-    public void setId(Long id) {
-        this.id = id;
+    public void setId(Long managerId) {
+        this.managerId = managerId;
     }
     public String getFirstName() {
         return firstName;

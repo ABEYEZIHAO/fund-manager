@@ -14,10 +14,10 @@ public class Fund {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "id")
-	private Long id;
+	private Long fundId;
 
 	@Column(name = "name")
-	private String name;
+	private String fundName;
 
 	@ManyToOne(optional = false)
 	@JoinColumn(name = "id")
@@ -32,30 +32,33 @@ public class Fund {
 	public Fund() {
 	}
 
-	public Fund(Long id, String name, Manager manager, List<Position> positions) {
-		this.id = id;
-		this.name = name;
+	public Fund(Long fundId, String fundName, Manager manager, List<Position> positions) {
+		this.fundId = fundId;
+		this.fundName = fundName;
 		this.manager = manager;
 		this.positions = positions;
 	}
 
-	public Long getId() {
-		return id;
+	public Long getFundId() {
+		return fundId;
 	}
-	public void setId(Long id) {
-		this.id = id;
-	}
-	public String getName() {
-		return name;
-	}
-	public void setName(String name) {
 
-		this.name = name;
+	public void setFundId(Long fundId) {
+		this.fundId = fundId;
+	}
+
+	public String getFundName() {
+		return fundName;
+	}
+
+	public void setFundName(String fundName) {
+		this.fundName = fundName;
 	}
 
 	public Manager getManager() {
 		return manager;
 	}
+
 	public void setManager(Manager manager) {
 		this.manager = manager;
 	}
@@ -63,6 +66,7 @@ public class Fund {
 	public List<Position> getPositions() {
 		return positions;
 	}
+
 	public void setPositions(List<Position> positions) {
 		this.positions = positions;
 	}
