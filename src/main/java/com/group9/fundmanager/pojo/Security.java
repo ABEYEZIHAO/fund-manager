@@ -1,6 +1,4 @@
-package com.dennis.springboot.pojo;
-
-
+package com.group9.fundmanager.pojo;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
