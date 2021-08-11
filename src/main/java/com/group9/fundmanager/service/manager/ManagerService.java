@@ -45,7 +45,7 @@ public class ManagerService {
         if (manager.isPresent()) {
             return manager.get();
         } else {
-            throw new com.groupnine.fundmanager.exception.FundNotFoundException(id);
+            throw new com.group9.fundmanager.exception.FundNotFoundException(id);
         }
     }
 
@@ -56,7 +56,7 @@ public class ManagerService {
     public void addNewManager(Manager newManager) {
         Optional<Manager> existingManage = managerDao.findManagerByFullName(newManager.getManagerName());
         if(existingManage.isPresent()){
-            throw new com.groupnine.fundmanager.exception.FundNameAlreadyInUseException(newManager.getManagerName());
+            throw new com.group9.fundmanager.exception.FundNameAlreadyInUseException(newManager.getManagerName());
         }
         managerDao.save(newManager);
     }
@@ -70,7 +70,7 @@ public class ManagerService {
             managerDao.deleteById(id);
         }
         else{
-            throw new com.groupnine.fundmanager.exception.FundNotFoundException(id);
+            throw new com.group9.fundmanager.exception.FundNotFoundException(id);
         }
     }
 

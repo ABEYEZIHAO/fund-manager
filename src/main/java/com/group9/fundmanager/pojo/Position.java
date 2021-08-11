@@ -15,6 +15,7 @@ public class Position {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "p_id")
     private Long positionId;
 
     @Column(name = "s_id")

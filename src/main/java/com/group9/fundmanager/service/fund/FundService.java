@@ -3,7 +3,7 @@ package com.group9.fundmanager.service.fund;
 import com.group9.fundmanager.dao.fund.FundDao;
 import com.group9.fundmanager.pojo.Fund;
 import com.group9.fundmanager.pojo.Manager;
-import com.groupnine.fundmanager.exception.FundNameAlreadyInUseException;
+import com.group9.fundmanager.exception.FundNameAlreadyInUseException;
 import org.hibernate.engine.spi.Managed;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -47,7 +47,7 @@ public class FundService {
         if (fund.isPresent()) {
             return fund.get();
         } else {
-            throw new com.groupnine.fundmanager.exception.FundNotFoundException(id);
+            throw new com.group9.fundmanager.exception.FundNotFoundException(id);
         }
     }
 
@@ -72,7 +72,7 @@ public class FundService {
             fundDao.deleteById(id);
         }
         else{
-            throw new com.groupnine.fundmanager.exception.FundNotFoundException(id);
+            throw new com.group9.fundmanager.exception.FundNotFoundException(id);
         }
     }
 
