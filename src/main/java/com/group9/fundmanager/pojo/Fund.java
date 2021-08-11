@@ -1,6 +1,14 @@
+<<<<<<< HEAD
 package com.group9.fundmanager.pojo;
 
 import javax.persistence.*;
+=======
+mport javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
+>>>>>>> 1bf7ef9c790e85c6a0b57150123dbe165961dc88
 import java.sql.ClientInfoStatus;
 import java.util.List;
 
@@ -8,12 +16,21 @@ import java.util.List;
 @Table(name = "funds")
 public class Fund {
 
+<<<<<<< HEAD
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "id")
 	private int id;
 
 	@Column(name = "name")
+=======
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY) 
+    @Column(name = "id") 
+	private int id;
+    
+    @Column(name = "name")
+>>>>>>> 1bf7ef9c790e85c6a0b57150123dbe165961dc88
 	private String name;
 
 	@Column(name = "m_id")
@@ -49,4 +66,8 @@ public class Fund {
 	public void setPositions(List<Long> positions) {
 		this.positions = positions;
 	}
+<<<<<<< HEAD
 }
+=======
+}
+>>>>>>> 1bf7ef9c790e85c6a0b57150123dbe165961dc88
