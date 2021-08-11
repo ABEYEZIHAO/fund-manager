@@ -14,7 +14,7 @@ import javax.persistence.Table;
 public class Securities
 {
 
-    @Id
+    @s_id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "s_id")
     private long s_id;
