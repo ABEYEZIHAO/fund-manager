@@ -40,7 +40,7 @@ public class ManagerService {
      * @param id the target manager ID
      * @return the manager with the specific ID
      */
-    public Manager getFund(Long id) {
+    public Manager getManager(Long id) {
         Optional<Manager> manager = managerDao.findById(id);
         if (manager.isPresent()) {
             return manager.get();
@@ -74,7 +74,7 @@ public class ManagerService {
         }
     }
 
-    public void updateFund(Manager newManager) throws Exception {
+    public void updateManager(Manager newManager) throws Exception {
         managerDao.save(newManager);
     }
 
