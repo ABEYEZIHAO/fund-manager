@@ -2,7 +2,9 @@ package com.group9.fundmanager.service.fund;
 
 import com.group9.fundmanager.dao.fund.FundDao;
 import com.group9.fundmanager.pojo.Fund;
+import com.group9.fundmanager.pojo.Manager;
 import com.groupnine.fundmanager.exception.FundNameAlreadyInUseException;
+import org.hibernate.engine.spi.Managed;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -13,6 +15,7 @@ import org.springframework.ui.Model;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.concurrent.ForkJoinPool;
 
 /**
  * @author abe

@@ -1,5 +1,6 @@
 package com.group9.fundmanager.web.fund;
 import com.group9.fundmanager.pojo.Fund;
+import com.group9.fundmanager.pojo.Manager;
 import com.group9.fundmanager.service.fund.FundService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;

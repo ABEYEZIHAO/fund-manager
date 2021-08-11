@@ -3,9 +3,11 @@ package com.group9.fundmanager.pojo;
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.JsonIdentityReference;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
+import javafx.geometry.Pos;
 
 import javax.persistence.*;
 import java.sql.ClientInfoStatus;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.jar.Manifest;
 
@@ -34,9 +36,10 @@ public class Fund {
 	public Fund() {
 	}
 
-	public Fund(Long id, String name) {
-		this.id = id;
-		this.name = name;
+	public Fund(String fundName, Manager manager, List<Position> positions) {
+		this.name = fundName;
+		this.manager = manager;
+		this.positions = positions;
 	}
 
 	public Fund(Long fundId, String fundName, Manager manager, List<Position> positions) {

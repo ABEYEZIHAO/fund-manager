@@ -3,8 +3,10 @@ package com.group9.fundmanager.pojo;
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.JsonIdentityReference;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
+import org.springframework.lang.Nullable;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -31,11 +33,10 @@ public class Manager {
     public Manager() {
     }
 
-    public Manager(Long id, String firstName, String lastName) {
-        this.id = id;
+    public Manager(String firstName, String lastName, List<Fund> funds) {
         this.firstName = firstName;
         this.lastName = lastName;
-        this.fullName = firstName + ' ' + lastName;
+        this.funds = funds;
     }
 
     public Manager(Long id, String firstName, String lastName, List<Fund> funds) {
