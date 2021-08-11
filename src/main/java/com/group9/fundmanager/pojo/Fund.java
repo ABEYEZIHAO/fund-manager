@@ -19,11 +19,13 @@ public class Fund {
 	@Column(name = "name")
 	private String name;
 
-	@ManyToOne
+	@ManyToOne(optional = false)
+	@JoinColumn(name = "id")
 	@JsonIdentityReference(alwaysAsId = true)
 	private Manager manager;
 
 	@OneToMany
+	@JoinColumn(name = "p_id")
 	@JsonIdentityReference(alwaysAsId = true)
 	private List<Position> positions;
 
