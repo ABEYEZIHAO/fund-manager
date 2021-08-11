@@ -1,5 +1,5 @@
-package com.group9.fundmanager.web;
-import com.group9.fundmanager.dao.FundDao;
+package com.group9.fundmanager.web.fund;
+import com.group9.fundmanager.dao.fund.FundDao;
 import com.group9.fundmanager.pojo.Fund;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -47,7 +47,7 @@ public class FundsController {
     	return "redirect:/funds";
     }
     @GetMapping("/funds/{id}")
-    public String getFund(@PathVariable("id") int id,Model m) throws Exception {
+    public String getFund(@PathVariable("id") Long id,Model m) throws Exception {
     	Fund c= fundDAO.getOne(id);
     	m.addAttribute("c", c);
     	return "editFund";
