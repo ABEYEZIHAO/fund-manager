@@ -9,7 +9,7 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "Securities")
-public class Securities
+public class Security
 {
 
     @s_id
