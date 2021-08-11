@@ -15,10 +15,10 @@ public class Position {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "p_id")
-    private long p_id;
+    private Long positionId;
 
     @Column(name = "s_id")
-    private long s_id;
+    private Long securityId;
 
     @Column(name = "quantity")
     private int quantity;
@@ -26,22 +26,36 @@ public class Position {
     @Column(name = "date")
     private Date date;
 
-    public long getp_id() {
-        return p_id;
+    public Position() {
     }
-    public void setp_id(long p_id) {
-        this.p_id = p_id;
+
+    public Position(Long positionId, Long securityId, int quantity, Date date) {
+        this.positionId = positionId;
+        this.securityId = securityId;
+        this.quantity = quantity;
+        this.date = date;
     }
-    public long gets_id() {
-        return s_id;
+
+    public Long getPositionId() {
+        return positionId;
     }
-    public void sets_id(long s_id) {
-        this.s_id = s_id;
+
+    public void setPositionId(Long positionId) {
+        this.positionId = positionId;
+    }
+
+    public Long getSecurityId() {
+        return securityId;
+    }
+
+    public void setSecurityId(Long securityId) {
+        this.securityId = securityId;
     }
 
     public int getQuantity() {
         return quantity;
     }
+
     public void setQuantity(int quantity) {
         this.quantity = quantity;
     }
@@ -49,8 +63,8 @@ public class Position {
     public Date getDate() {
         return date;
     }
+
     public void setDate(Date date) {
         this.date = date;
     }
-
 }

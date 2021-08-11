@@ -9,23 +9,22 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "securities")
-public class Security
-{
+public class Security {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "s_id")
-    private long s_id;
+    private Long securityId;
 
     @Column(name = "symbol")
     private String symbol;
 
 
-    public long getS_id() {
-        return s_id;
+    public long getSecurityId() {
+        return securityId;
     }
-    public void setS_id(long s_id) {
-        this.s_id = s_id;
+    public void setSecurityId(Long securityId) {
+        this.securityId = securityId;
     }
 
     public String getSymbol() {

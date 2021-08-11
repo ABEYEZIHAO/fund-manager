@@ -16,17 +16,17 @@ public class FundManagerApplication {
         SpringApplication.run(FundManagerApplication.class, args);
     }
 
-    @Bean
-    CommandLineRunner commandLineRunner(FundDao fundDao) {
-        return args -> {
-            List<Fund> users = com.sun.tools.javac.util.List.of(
-                    new Fund(1L,
-                            "Olympic Memorial Fund"),
-                    new Fund(2L,
-                            "UK Overseas Income Fund")
-            );
-
-            List<Fund> savedUsers = fundDao.saveAll(users);
-        };
-    }
+//    @Bean
+//    CommandLineRunner commandLineRunner(FundDao fundDao) {
+//        return args -> {
+//            List<Fund> users = com.sun.tools.javac.util.List.of(
+//                    new Fund(1L,
+//                            "Olympic Memorial Fund"),
+//                    new Fund(2L,
+//                            "UK Overseas Income Fund")
+//            );
+//
+//            List<Fund> savedUsers = fundDao.saveAll(users);
+//        };
+//    }
 }
