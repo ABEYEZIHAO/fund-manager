@@ -35,13 +35,13 @@ public class SecurityController {
     @DeleteMapping("/securities/{id}")
     public String deleteSecurity(@PathVariable("id") Long id) throws Exception {
         securityService.deleteSecurity(id);
-        return "redirect:securities";
+        return "redirect:/securities";
     }
 
     @PutMapping("/securities/{id}")
     public String updateSecurity(Security newSecurity) throws Exception {
         securityService.updateSecurity(newSecurity);
-        return "redirect:securities";
+        return "redirect:/securities";
     }
 
     @GetMapping("/securities/{id}")

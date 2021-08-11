@@ -37,13 +37,13 @@ public class FundsController {
     @DeleteMapping("/funds/{id}")
     public String deleteFund(@PathVariable("id") Long id) throws Exception {
         fundService.deleteFund(id);
-    	return "redirect:funds";
+    	return "redirect:/funds";
     }
 
     @PutMapping("/funds/{id}")
     public String updateFund(Fund newFund) throws Exception {
         fundService.updateFund(newFund);
-    	return "redirect:funds";
+    	return "redirect:/funds";
     }
 
     @GetMapping("/funds/{id}")
