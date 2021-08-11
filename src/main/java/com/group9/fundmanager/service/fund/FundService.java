@@ -73,6 +73,10 @@ public class FundService {
         }
     }
 
+    public void updateFund(Fund newFund) throws Exception {
+        fundDao.save(newFund);
+    }
+
     public String listFund(Model m, int start, int size) throws Exception {
         start = start<0?0:start;
 //		List<Fund> fund = FundDao.findAll(Sort.by(Sort.Direction.DESC, "id");

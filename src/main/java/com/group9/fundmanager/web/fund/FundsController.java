@@ -35,16 +35,19 @@ public class FundsController {
     	fundService.addNewFund(newFund);
     	return "redirect:/funds";
     }
+
     @DeleteMapping("/funds/{id}")
     public String deleteFund(@PathVariable("id") Long id) throws Exception {
         fundService.deleteFund(id);
     	return "redirect:/funds";
     }
-//    @PutMapping("/funds/{id}")
-//    public String updateFund(Fund newFund) throws Exception {
-//        fundService.save(newFund);
-//    	return "redirect:/funds";
-//    }
+
+    @PutMapping("/funds/{id}")
+    public String updateFund(Fund newFund) throws Exception {
+        fundService.updateFund(newFund);
+    	return "redirect:/funds";
+    }
+
     @GetMapping("/funds/{id}")
     public String getFund(@PathVariable("id") Long id,Model m) throws Exception {
     	Fund c= fundService.getFund(id);
