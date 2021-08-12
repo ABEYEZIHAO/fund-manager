@@ -36,10 +36,14 @@ public class FundsController {
     public String addFund(WebRequest webRequest) throws Exception {
         String[] names = webRequest.getParameterValues("name");
         String[] managerIds = webRequest.getParameterValues("manager_id");
-        assert names != null;
-        assert managerIds != null;
-        fundService.addNewFund(names[0], Long.parseLong(managerIds[0]));
-    	return "redirect:funds";
+        if (names == null) {
+            throw new IllegalArgumentException("Please input the fund name.");
+        } else if (managerIds == null) {
+            throw new IllegalArgumentException("Please input the ID of an existing manager. Otherwise, please create the new manager first.")
+        } else {
+            fundService.addNewFund(names[0], Long.parseLong(managerIds[0]));
+            return "redirect:funds";
+        }
     }
 
     @DeleteMapping("/funds/{id}")
