@@ -28,6 +28,12 @@ public class Position {
     public Position() {
     }
 
+    public Position(Security security, int quantity, LocalDate date) {
+        this.security = security;
+        this.quantity = quantity;
+        this.date = date;
+    }
+
     public Position(Long id, Security security, int quantity, LocalDate date) {
         this.id = id;
         this.security = security;
@@ -35,20 +41,20 @@ public class Position {
         this.date = date;
     }
 
-    public Long getPositionId() {
+    public Long getId() {
         return id;
     }
 
-    public void setPositionId(Long id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
-    public Long getSecurityId() {
-        return security.getId();
+    public Security getSecurity() {
+        return security;
     }
 
-    public void setSecurityId(Long securityId) {
-        this.security.setId(securityId);
+    public void setSecurity(Security security) {
+        this.security = security;
     }
 
     public int getQuantity() {

@@ -11,7 +11,7 @@ public class EntityNotFoundException extends IllegalArgumentException {
     private final Long fundId;
 
     public EntityNotFoundException(Long fundId) {
-        super("User with Id " + fundId +  " not found.");
+        super("Fund with Id " + fundId +  " not found.");
         this.fundId = fundId;
     }
 }

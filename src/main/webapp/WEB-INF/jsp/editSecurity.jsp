@@ -7,7 +7,7 @@
 
 <form action="../securities/${c.id}" method="post">
 		<input type="hidden" name="_method" value="PUT">
-symbol: <input name="symbol" value="${c.symbol}"> <br>
+Symbol: <input name="symbol" value="${c.symbol}"> <br>
 <button type="submit">submit</button>
 
 </form>

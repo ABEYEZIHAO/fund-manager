@@ -25,17 +25,17 @@ public class PositionController {
     }
 
     @PostMapping("/positions")
-    public String addPosition(Position newPosition) throws Exception {
-//        String[] names = webRequest.getParameterValues("name");
-//        String[] managerIds = webRequest.getParameterValues("quantity");
-//        if (names == null) {
-//            throw new IllegalArgumentException("Please input the fund name.");
-//        } else if (managerIds == null) {
-//            throw new IllegalArgumentException("Please input the ID of an existing manager. Otherwise, please create the new manager first.");
-//        } else {
-            positionService.addNewPosition(newPosition);
+    public String addPosition(WebRequest webRequest) throws Exception {
+        String[] symbols = webRequest.getParameterValues("symbol");
+        String[] quantities = webRequest.getParameterValues("quantity");
+        if (symbols == null) {
+            throw new IllegalArgumentException("Please input the security symbol.");
+        } else if (quantities == null) {
+            throw new IllegalArgumentException("Please input the quantity.");
+        } else {
+            positionService.addNewPosition(symbols[0], Integer.parseInt(quantities[0]));
             return "redirect:positions";
-
+        }
     }
 
     @DeleteMapping("/positions/{id}")

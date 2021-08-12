@@ -51,7 +51,7 @@
 	</div>
 	<br>
 	<form action="securities" method="post">
-	symbol: <input name="symbol"> <br>
+	Symbol: <input name="symbol"> <br>
 	<button type="submit">submit</button>
 	
 	</form>
