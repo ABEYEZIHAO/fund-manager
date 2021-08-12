@@ -2,8 +2,10 @@ package com.group9.fundmanager;
  
 import com.group9.fundmanager.dao.fund.FundDao;
 import com.group9.fundmanager.dao.manager.ManagerDao;
+import com.group9.fundmanager.dao.security.SecurityDao;
 import com.group9.fundmanager.pojo.Fund;
 import com.group9.fundmanager.pojo.Manager;
+import com.group9.fundmanager.pojo.Security;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -22,7 +24,7 @@ public class FundManagerApplication {
     }
 
     @Bean
-    CommandLineRunner commandLineRunner(FundDao fundDao, ManagerDao managerDao) {
+    CommandLineRunner commandLineRunner(FundDao fundDao, ManagerDao managerDao, SecurityDao securityDao) {
         return args -> {
             List<Manager> managers = com.sun.tools.javac.util.List.of(
                     new Manager(1L,
@@ -50,6 +52,16 @@ public class FundManagerApplication {
 
             List<Fund> savedFunds = fundDao.saveAll(funds);
 
+            List<Security> securities = com.sun.tools.javac.util.List.of(
+                    new Security(1L,
+                            "IBM"),
+                    new Security(2L,
+                            "AAPL"),
+                    new Security(3L,
+                            "C")
+            );
+
+            List<Security> savedSecurities = securityDao.saveAll(securities);
         };
     }
 }
