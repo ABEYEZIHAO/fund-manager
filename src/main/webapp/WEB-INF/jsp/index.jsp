@@ -9,7 +9,7 @@
          pageEncoding="UTF-8" import="java.sql.*"%>
 <html>
 <head>
-  <title>数据库内容</title>
+  <title>index</title>
 </head>
 <body>
 <%
@@ -30,26 +30,53 @@
   ResultSet rs = stmt.executeQuery(sql);
 
 
-  while(rs.next()){
-    out.print(rs.getString(1)+"");
-    out.print(" | ");
-    out.print(rs.getString(2)+"");
-    out.print(" | ");
-    out.print(rs.getString(3)+"");
-    out.print(" | ");
-    out.print(rs.getString(4)+"");
-    out.print(" | ");
-    out.print(rs.getString(5)+"");
-    out.print(" | ");
-    out.print("<br>");
-  }
-  out.print("<br>");
+//  while(rs.next()){
+//    out.print(rs.getString(1)+"");
+//    out.print(" | ");
+//    out.print(rs.getString(2)+"");
+//    out.print(" | ");
+//    out.print(rs.getString(3)+"");
+//    out.print(" | ");
+//    out.print(rs.getString(4)+"");
+//    out.print(" | ");
+//    out.print(rs.getString(5)+"");
+//    out.print(" | ");
+//    out.print("<br>");
+//  }
+//  out.print("<br>");
+
 
   //关闭相关参数
-  rs.close();
-  stmt.close();
-  conn.close();
+//  rs.close();
+//  stmt.close();
+//  conn.close();
 %>
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+</head>
+<body>
+<table align="center" cellspacing="0" border="1">
+  <tr>
+    <th>FundsName</th>
+    <th>Managers</th>
+    <th>Date</th>
+    <th>Quantity</th>
+    <th>Symbol</th>
+  </tr>
+  <% while (rs.next()) { %>
+  <tr>
+    <td><%out.print(rs.getString(1));%></td>
+    <td><%out.print(rs.getString(2));%></td>
+    <td><%out.print(rs.getString(3));%></td>
+    <td><%out.print(rs.getString(4));%></td>
+    <td><%out.print(rs.getString(5));%></td>
+  </tr>
+  <% } %>
+</table>
+</body>
+</html>
+
 </body>
 </html>
 
