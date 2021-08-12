@@ -30,7 +30,7 @@ public class Fund implements Serializable {
 	private Manager manager;
 
 	@OneToMany
-	@JoinColumn(name = "p_id")
+	@JoinColumn(name = "position_id")
 	@JsonIdentityReference(alwaysAsId = true)
 	private List<Position> positions;
 

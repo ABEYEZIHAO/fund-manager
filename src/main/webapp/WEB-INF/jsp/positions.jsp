@@ -24,7 +24,7 @@
 <div style="width:500px;margin:20px auto;text-align: center">
 	<table align='center' border='1' cellspacing='0'>
 	    <tr>
-<%--	        <td>Position ID</td>--%>
+	        <td>Position ID</td>
 	        <td>Security ID</td>
 	        <td>Quantity</td>
 	        <td>Date Purchased</td>
@@ -33,7 +33,7 @@
 	    </tr>
 	    <c:forEach items="${page.content}" var="c" varStatus="st">
 	        <tr>
-<%--				<td>${c.id}</td>--%>
+				<td>${c.getPositionId()}</td>
 	            <td>${c.getSecurityId()}</td>
 				<td>${c.quantity}</td>
 				<td>${c.date}</td>

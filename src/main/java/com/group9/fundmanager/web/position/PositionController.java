@@ -54,6 +54,6 @@ public class PositionController {
     public String getSecurity(@PathVariable("id") Long id,Model m) throws Exception {
         Position c= positionService.getPosition(id);
         m.addAttribute("c", c);
-        return "editpositions";
+        return "editPosition";
     }
 }

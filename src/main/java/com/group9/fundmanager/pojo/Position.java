@@ -12,6 +12,7 @@ public class Position {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+
     private Long id;
 
     @ManyToOne(optional = false)
