@@ -27,7 +27,14 @@ public class Manager implements Serializable {
 
     private String fullName;
 
-    @OneToMany(mappedBy = "manager", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    /**
+     * Cannot set [fetch = FetchType.EAGER], otherwise the "delete" function will not work
+     *
+     * The default type of fetch:
+     *  - @OneToMany: FetchType.LAZY
+     *  - @ManyToOne: FetchType.EAGER
+     */
+    @OneToMany(mappedBy = "manager", cascade = CascadeType.ALL)
     @JsonIdentityReference(alwaysAsId = true)
     private List<Fund> funds;
 

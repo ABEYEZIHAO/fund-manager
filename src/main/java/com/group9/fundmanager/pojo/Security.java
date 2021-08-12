@@ -21,7 +21,6 @@ public class Security {
     @Column(name = "symbol")
     private String symbol;
 
-
     public Security() {
     }
 

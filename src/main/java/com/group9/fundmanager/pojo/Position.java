@@ -12,7 +12,6 @@ public class Position {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "p_id")
     private Long id;
 
     @ManyToOne(optional = false)
