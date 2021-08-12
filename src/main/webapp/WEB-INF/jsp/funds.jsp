@@ -54,12 +54,11 @@
 	<br>
 
 	<form action="funds" method="post">
-	name: <input name="name">
-	manager_id: <input manager_id="manager_id">
+		name: <input name="name">
+		manager_id: <input name="manager_id">
 	<br>
 
 	<button type="submit">submit</button>
-<%--	<a href="${pageContext.request.contextPath}/funds/${param.name}/${param.manager_id}">submit</a>--%>
 	</form>
 	
 	<form id="formdelete" action="" method="POST" >

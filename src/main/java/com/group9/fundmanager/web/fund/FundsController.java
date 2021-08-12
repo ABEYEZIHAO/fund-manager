@@ -34,12 +34,8 @@ public class FundsController {
 
 	@PostMapping("/funds")
     public String addFund(WebRequest webRequest) throws Exception {
-        System.out.println("进入addFund");
         String[] names = webRequest.getParameterValues("name");
         String[] managerIds = webRequest.getParameterValues("manager_id");
-        System.out.println("TEST");
-        System.out.println(Arrays.toString(names));
-        System.out.println(Arrays.toString(managerIds));
         assert names != null;
         assert managerIds != null;
         fundService.addNewFund(names[0], Long.parseLong(managerIds[0]));
