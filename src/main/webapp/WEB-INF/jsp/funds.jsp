@@ -26,6 +26,7 @@
 	    <tr>
 	        <td>id</td>
 	        <td>name</td>
+			<td>managers</td>
 	        <td>edit</td>
 	        <td>delete</td>
 	    </tr>
@@ -33,6 +34,7 @@
 	        <tr>
 	            <td>${c.id}</td>
 	            <td>${c.name}</td>
+				<td>${c.manager.firstName}</td>
 				<td><a href="funds/${c.id}">edit</a></td>
 				<td><a class="delete" href="funds/${c.id}">delete</a></td>
 	        </tr>
@@ -51,7 +53,10 @@
 	</div>
 	<br>
 	<form action="funds" method="post">
-	name: <input name="name"> <br>
+	name: <input name="name">
+	manager_id:<input manager_id="manager_id">
+	<br>
+
 	<button type="submit">submit</button>
 	
 	</form>
