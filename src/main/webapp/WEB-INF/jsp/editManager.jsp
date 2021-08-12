@@ -6,8 +6,9 @@
 
 
 <form action="../managers/${c.id}" method="post">
-		<input type="hidden" name="_method" value="PUT">
-name: <input name="name" value="${c.name}"> <br>
+	<input type="hidden" name="_method" value="PUT">
+	First Name: <input name="first_name" value="${c.firstName}"> <br>
+	Last Name: <input name="last_name" value="${c.lastName}"> <br>
 <button type="submit">submit</button>
 
 </form>

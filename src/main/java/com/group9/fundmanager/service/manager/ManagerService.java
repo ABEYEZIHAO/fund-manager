@@ -5,6 +5,7 @@ import com.group9.fundmanager.exception.NameAlreadyInUseException;
 import com.group9.fundmanager.exception.EntityNotFoundException;
 import com.group9.fundmanager.pojo.Fund;
 import com.group9.fundmanager.pojo.Manager;
+import com.group9.fundmanager.tool.ListTool;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -79,8 +80,11 @@ public class ManagerService {
         }
     }
 
-    public void updateManager(Manager newManager) throws Exception {
-        managerDao.save(newManager);
+    public void updateManager(Long id, String firstName, String lastName) throws Exception {
+        Optional<Manager> originalManager = managerDao.findById(id);
+        if (originalManager.isPresent()) {
+            managerDao.save(new Manager(id, firstName, lastName, ListTool.deepCopy(originalManager.get().getFunds())));
+        }
     }
 
     public String listManager(Model m, int start, int size) throws Exception {

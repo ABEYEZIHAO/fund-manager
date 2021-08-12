@@ -42,6 +42,17 @@ public class Manager implements Serializable {
     public Manager() {
     }
 
+    public Manager(String fullName, List<Fund> funds) {
+        this.fullName = fullName;
+        this.funds = funds;
+    }
+
+    public Manager(Long id, String fullName, List<Fund> funds) {
+        this.id = id;
+        this.fullName = fullName;
+        this.funds = funds;
+    }
+
     public Manager(String firstName, String lastName, List<Fund> funds) {
         this.firstName = firstName;
         this.lastName = lastName;
@@ -76,8 +87,12 @@ public class Manager implements Serializable {
         this.lastName = lastName;
     }
 
-    public String getManagerName() {
+    public String getFullName() {
         return this.fullName;
+    }
+
+    public void setFullName(String fullName) {
+        this.fullName = fullName;
     }
 
     public List<Fund> getFunds() {

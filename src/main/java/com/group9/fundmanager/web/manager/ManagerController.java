@@ -51,8 +51,12 @@ public class ManagerController {
     }
 
     @PutMapping("/managers/{id}")
-    public String updateManager(Manager newManager) throws Exception {
-        managerService.updateManager(newManager);
+    public String updateManager(@PathVariable("id") Long id, WebRequest webRequest) throws Exception {
+        String[] firstNames = webRequest.getParameterValues("first_name");
+        String[] lastNames = webRequest.getParameterValues("last_name");
+        assert firstNames != null;
+        assert lastNames != null;
+        managerService.updateManager(id, firstNames[0], lastNames[0]);
         return "redirect:/managers";
     }
 

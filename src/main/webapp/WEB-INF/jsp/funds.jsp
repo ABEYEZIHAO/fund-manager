@@ -39,10 +39,7 @@
 				<td><a class="delete" href="funds/${c.id}">delete</a></td>
 	        </tr>
 	    </c:forEach>
-	    
 
-
-            	    
 	</table>
 	<br>
 	<div>
