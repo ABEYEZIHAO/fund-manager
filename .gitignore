@@ -24,3 +24,6 @@ hs_err_pid*
 
 # The properties file
 application.properties
+
+# The following file includes DB password, thus ignore
+index.jsp
