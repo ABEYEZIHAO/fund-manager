@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.context.request.WebRequest;
 
 
 @Controller
@@ -24,9 +25,17 @@ public class PositionController {
     }
 
     @PostMapping("/positions")
-    public String addSecurity(Position newPosition) throws Exception {
-        positionService.addNewPosition(newPosition);
-        return "redirect:positions";
+    public String addPosition(Position newPosition) throws Exception {
+//        String[] names = webRequest.getParameterValues("name");
+//        String[] managerIds = webRequest.getParameterValues("quantity");
+//        if (names == null) {
+//            throw new IllegalArgumentException("Please input the fund name.");
+//        } else if (managerIds == null) {
+//            throw new IllegalArgumentException("Please input the ID of an existing manager. Otherwise, please create the new manager first.");
+//        } else {
+            positionService.addNewPosition(newPosition);
+            return "redirect:positions";
+
     }
 
     @DeleteMapping("/positions/{id}")
