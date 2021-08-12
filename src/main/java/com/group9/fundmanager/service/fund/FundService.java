@@ -83,8 +83,11 @@ public class FundService {
         }
     }
 
-    public void updateFund(Fund newFund) throws Exception {
-        fundDao.save(newFund);
+    public void updateFund(Long id, String name, Long managerId) throws Exception {
+        Optional<Fund> originalFund = fundDao.findById(id);
+        if (originalFund.isPresent()) {
+            fundDao.save(new Fund(name, managerDao.getById(managerId), originalFund.get().getPositions()));
+        }
     }
 
     public String listFund(Model m, int start, int size) throws Exception {
