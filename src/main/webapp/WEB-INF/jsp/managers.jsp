@@ -24,26 +24,19 @@
 <div style="width:500px;margin:20px auto;text-align: center">
 	<table align='center' border='1' cellspacing='0'>
 	    <tr>
-	        <td>id</td>
-	        <td>name</td>
-			<td>name</td>
-
-	        <td>edit</td>
-	        <td>delete</td>
+	        <td>ID</td>
+	        <td>NAME</td>
+	        <td>EDIT</td>
+	        <td>DELETE</td>
 	    </tr>
 	    <c:forEach items="${page.content}" var="c" varStatus="st">
 	        <tr>
 	            <td>${c.id}</td>
-	            <td>${c.firstName}</td>
-				<td>${c.lastName}</td>
-
+	            <td>${c.firstName} ${c.lastName}</td>
 				<td><a href="managers/${c.id}">edit</a></td>
 				<td><a class="delete" href="managers/${c.id}">delete</a></td>
 	        </tr>
 	    </c:forEach>
-	    
-
-
             	    
 	</table>
 	<br>
@@ -55,7 +48,8 @@
 	</div>
 	<br>
 	<form action="managers" method="post">
-	name: <input name="name"> <br>
+		First Name: <input name="first_name"> <br>
+		Last Name: <input name="last_name"> <br>
 	<button type="submit">submit</button>
 	
 	</form>

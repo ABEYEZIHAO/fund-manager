@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.context.request.WebRequest;
 
 import java.util.jar.Manifest;
 
@@ -29,9 +30,18 @@ public class ManagerController {
     }
 
     @PostMapping("/managers")
-    public String addManager(Manager newManager) throws Exception {
-        managerService.addNewManager(newManager);
-        return "redirect:managers";
+    public String addManager(WebRequest webRequest) throws Exception {
+        String[] firstNames = webRequest.getParameterValues("first_name");
+        String[] lastNames = webRequest.getParameterValues("last_name");
+
+        if (firstNames == null) {
+            throw new IllegalArgumentException("Please input the first name");
+        } else if (lastNames == null) {
+            throw new IllegalArgumentException("Please input the last name");
+        } else {
+            managerService.addNewManager(firstNames[0], lastNames[0]);
+            return "redirect:managers";
+        }
     }
 
     @DeleteMapping("/managers/{id}")
@@ -41,8 +51,12 @@ public class ManagerController {
     }
 
     @PutMapping("/managers/{id}")
-    public String updateManager(Manager newManager) throws Exception {
-        managerService.updateManager(newManager);
+    public String updateManager(@PathVariable("id") Long id, WebRequest webRequest) throws Exception {
+        String[] firstNames = webRequest.getParameterValues("first_name");
+        String[] lastNames = webRequest.getParameterValues("last_name");
+        assert firstNames != null;
+        assert lastNames != null;
+        managerService.updateManager(id, firstNames[0], lastNames[0]);
         return "redirect:/managers";
     }
 

@@ -12,8 +12,6 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.context.request.WebRequest;
 
-import java.util.Arrays;
-
 /**
  * @author dennis
  */
@@ -50,12 +48,6 @@ public class FundsController {
         fundService.deleteFund(id);
     	return "redirect:/funds";
     }
-
-//    @PutMapping("/funds/{id}")
-//    public String updateFund(Fund newFund) throws Exception {
-//        fundService.updateFund(newFund);
-//    	return "redirect:/funds";
-//    }
 
     @PutMapping("/funds/{id}")
     public String updateFund(@PathVariable("id") Long id, WebRequest webRequest) throws Exception {

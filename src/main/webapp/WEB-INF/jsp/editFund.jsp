@@ -7,8 +7,8 @@
 
 <form action="../funds/${c.id}" method="post">
 	<input type="hidden" name="_method" value="PUT">
-	name: <input name="name" value="${c.name}"> <br>
-	manager_id : <input name="manager_id" value="${c.manager.id}"> <br>
+	Name: <input name="name" value="${c.name}"> <br>
+	Manager ID : <input name="manager_id" value="${c.manager.id}"> <br>
 <button type="submit">submit</button>
 
 <%--</form>--%>

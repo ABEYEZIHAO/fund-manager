@@ -24,10 +24,10 @@
 <div style="width:500px;margin:20px auto;text-align: center">
 	<table align='center' border='1' cellspacing='0'>
 	    <tr>
-	        <td>id</td>
-	        <td>symbol</td>
-	        <td>edit</td>
-	        <td>delete</td>
+	        <td>ID</td>
+	        <td>SYMBOL</td>
+	        <td>EDIT</td>
+	        <td>DELETE</td>
 	    </tr>
 	    <c:forEach items="${page.content}" var="c" varStatus="st">
 	        <tr>
@@ -51,7 +51,7 @@
 	</div>
 	<br>
 	<form action="securities" method="post">
-	symbol: <input name="symbol"> <br>
+	Symbol: <input name="symbol"> <br>
 	<button type="submit">submit</button>
 	
 	</form>

@@ -25,6 +25,7 @@ public class Manager implements Serializable {
     @Column(name = "last_name")
     private String lastName;
 
+    @Column(name = "full_name")
     private String fullName;
 
     /**
@@ -41,10 +42,22 @@ public class Manager implements Serializable {
     public Manager() {
     }
 
+    public Manager(String fullName, List<Fund> funds) {
+        this.fullName = fullName;
+        this.funds = funds;
+    }
+
+    public Manager(Long id, String fullName, List<Fund> funds) {
+        this.id = id;
+        this.fullName = fullName;
+        this.funds = funds;
+    }
+
     public Manager(String firstName, String lastName, List<Fund> funds) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.funds = funds;
+        this.fullName = firstName + ' ' + lastName;
     }
 
     public Manager(Long id, String firstName, String lastName, List<Fund> funds) {
@@ -52,6 +65,7 @@ public class Manager implements Serializable {
         this.firstName = firstName;
         this.lastName = lastName;
         this.funds = funds;
+        this.fullName = firstName + ' ' + lastName;
     }
 
     public Long getId() {
@@ -73,8 +87,12 @@ public class Manager implements Serializable {
         this.lastName = lastName;
     }
 
-    public String getManagerName() {
-        return this.firstName+this.lastName;
+    public String getFullName() {
+        return this.fullName;
+    }
+
+    public void setFullName(String fullName) {
+        this.fullName = fullName;
     }
 
     public List<Fund> getFunds() {
