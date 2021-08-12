@@ -87,7 +87,7 @@ public class FundService {
     public void updateFund(Long id, String name, Long managerId) throws Exception {
         Optional<Fund> originalFund = fundDao.findById(id);
         if (originalFund.isPresent()) {
-            fundDao.save(new Fund(name, managerDao.getById(managerId), ListTool.deepCopy(originalFund.get().getPositions())));
+            fundDao.save(new Fund(id, name, managerDao.getById(managerId), ListTool.deepCopy(originalFund.get().getPositions())));
         }
     }
 
