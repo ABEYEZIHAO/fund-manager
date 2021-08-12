@@ -1,9 +1,11 @@
 package com.group9.fundmanager.service.fund;
 
 import com.group9.fundmanager.dao.fund.FundDao;
+import com.group9.fundmanager.dao.manager.ManagerDao;
 import com.group9.fundmanager.exception.EntityNotFoundException;
 import com.group9.fundmanager.pojo.Fund;
 import com.group9.fundmanager.exception.NameAlreadyInUseException;
+import com.group9.fundmanager.pojo.Position;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -12,6 +14,7 @@ import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.springframework.ui.Model;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -21,10 +24,12 @@ import java.util.Optional;
 @Service
 public class FundService {
     private final FundDao fundDao;
+    private final ManagerDao managerDao;
 
     @Autowired
-    public FundService(FundDao fundDao) {
+    public FundService(FundDao fundDao, ManagerDao managerDao) {
         this.fundDao = fundDao;
+        this.managerDao = managerDao;
     }
 
     /**
@@ -51,13 +56,15 @@ public class FundService {
 
     /**
      * Add a new fund
-     * @param newFund a Fund object
+     * @param name name of the fund
+     * @param managerId ID of the manager
      */
-    public void addNewFund(Fund newFund) {
-        Optional<Fund> existingUser = fundDao.findFundByName(newFund.getName());
+    public void addNewFund(String name, Long managerId) {
+        Optional<Fund> existingUser = fundDao.findFundByName(name);
         if(existingUser.isPresent()){
-            throw new NameAlreadyInUseException(newFund.getName());
+            throw new NameAlreadyInUseException(name);
         }
+        Fund newFund = new Fund(name, managerDao.getById(managerId), new ArrayList<Position>());
         fundDao.save(newFund);
     }
 
