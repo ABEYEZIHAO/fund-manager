@@ -9,10 +9,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Controller
 public class HelloController {
  
-    @RequestMapping("/hello")
+    @RequestMapping("/index")
     public String hello(Model m) throws Exception {
     	m.addAttribute("now", DateFormat.getDateTimeInstance().format(new Date()));
 
-        return "hello";
+        return "index";
     }
 }
