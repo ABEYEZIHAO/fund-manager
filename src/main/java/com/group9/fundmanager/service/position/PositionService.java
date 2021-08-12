@@ -53,7 +53,7 @@ public class PositionService {
      * @param newPosition position object
      */
     public void addNewPosition(Position newPosition) {
-        Optional<Position> existingUser = positionDao.findPositionByPositionId(newPosition.getPositionId());
+        Optional<Position> existingUser = positionDao.findPositionById(newPosition.getPositionId());
 //        if(existingUser.isPresent()){
 //            throw new com.group9.fundmanager.exception.FundNameAlreadyInUseException(newPosition.getPositionId());
 //        }
@@ -84,6 +84,6 @@ public class PositionService {
         Pageable pageable = PageRequest.of(start, size, sort);
         Page<Position> page =positionDao.findAll(pageable);
         m.addAttribute("page", page);
-        return "funds";
+        return "positions";
     }
 }

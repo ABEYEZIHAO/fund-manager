@@ -66,7 +66,7 @@ public class Manager {
     }
 
     public String getManagerName() {
-        return fullName;
+        return this.firstName+this.lastName;
     }
 
     public List<Fund> getFunds() {

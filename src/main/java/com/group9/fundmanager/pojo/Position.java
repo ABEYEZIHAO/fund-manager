@@ -1,11 +1,8 @@
 package com.group9.fundmanager.pojo;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import com.fasterxml.jackson.annotation.JsonIdentityReference;
+
+import javax.persistence.*;
 import java.time.LocalDate;
 import java.util.Date;
 
@@ -16,10 +13,12 @@ public class Position {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "p_id")
-    private Long positionId;
+    private Long id;
 
-    @Column(name = "s_id")
-    private Long securityId;
+    @ManyToOne(optional = false)
+    @JoinColumn(name = "security_id")
+    @JsonIdentityReference(alwaysAsId = true)
+    private Security security;
 
     @Column(name = "quantity")
     private int quantity;
@@ -30,27 +29,27 @@ public class Position {
     public Position() {
     }
 
-    public Position(Long positionId, Long securityId, int quantity, LocalDate date) {
-        this.positionId = positionId;
-        this.securityId = securityId;
+    public Position(Long id, Security security, int quantity, LocalDate date) {
+        this.id = id;
+        this.security = security;
         this.quantity = quantity;
         this.date = date;
     }
 
     public Long getPositionId() {
-        return positionId;
+        return id;
     }
 
-    public void setPositionId(Long positionId) {
-        this.positionId = positionId;
+    public void setPositionId(Long id) {
+        this.id = id;
     }
 
     public Long getSecurityId() {
-        return securityId;
+        return security.getId();
     }
 
     public void setSecurityId(Long securityId) {
-        this.securityId = securityId;
+        this.security.setId(securityId);
     }
 
     public int getQuantity() {
