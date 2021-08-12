@@ -26,13 +26,17 @@
 	    <tr>
 	        <td>id</td>
 	        <td>name</td>
+			<td>name</td>
+
 	        <td>edit</td>
 	        <td>delete</td>
 	    </tr>
 	    <c:forEach items="${page.content}" var="c" varStatus="st">
 	        <tr>
 	            <td>${c.id}</td>
-	            <td>${c.name}</td>
+	            <td>${c.firstName}</td>
+				<td>${c.lastName}</td>
+
 				<td><a href="managers/${c.id}">edit</a></td>
 				<td><a class="delete" href="managers/${c.id}">delete</a></td>
 	        </tr>
