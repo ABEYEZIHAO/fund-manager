@@ -52,13 +52,14 @@
             <a href="?start=${page.totalPages-1}">[last page]</a>
 	</div>
 	<br>
+
 	<form action="funds" method="post">
 	name: <input name="name">
-	manager_id:<input manager_id="manager_id">
+	manager_id: <input manager_id="manager_id">
 	<br>
 
 	<button type="submit">submit</button>
-	
+<%--	<a href="${pageContext.request.contextPath}/funds/${param.name}/${param.manager_id}">submit</a>--%>
 	</form>
 	
 	<form id="formdelete" action="" method="POST" >
