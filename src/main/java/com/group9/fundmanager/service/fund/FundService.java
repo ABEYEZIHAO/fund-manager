@@ -6,6 +6,7 @@ import com.group9.fundmanager.exception.EntityNotFoundException;
 import com.group9.fundmanager.pojo.Fund;
 import com.group9.fundmanager.exception.NameAlreadyInUseException;
 import com.group9.fundmanager.pojo.Position;
+import com.group9.fundmanager.tool.ListTool;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -86,7 +87,7 @@ public class FundService {
     public void updateFund(Long id, String name, Long managerId) throws Exception {
         Optional<Fund> originalFund = fundDao.findById(id);
         if (originalFund.isPresent()) {
-            fundDao.save(new Fund(name, managerDao.getById(managerId), originalFund.get().getPositions()));
+            fundDao.save(new Fund(name, managerDao.getById(managerId), ListTool.deepCopy(originalFund.get().getPositions())));
         }
     }
 

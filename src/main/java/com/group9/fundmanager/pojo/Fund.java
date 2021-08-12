@@ -6,6 +6,7 @@ import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import javafx.geometry.Pos;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.sql.ClientInfoStatus;
 import java.util.ArrayList;
 import java.util.List;
@@ -14,7 +15,7 @@ import java.util.jar.Manifest;
 @Entity
 @Table(name = "funds")
 @JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id")
-public class Fund {
+public class Fund implements Serializable {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
