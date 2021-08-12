@@ -34,7 +34,7 @@
 	        <tr>
 	            <td>${c.id}</td>
 	            <td>${c.name}</td>
-				<td>${c.manager.firstName}</td>
+				<td>${c.manager.firstName} ${c.manager.lastName}</td>
 				<td><a href="funds/${c.id}">edit</a></td>
 				<td><a class="delete" href="funds/${c.id}">delete</a></td>
 	        </tr>
