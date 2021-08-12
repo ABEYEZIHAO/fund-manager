@@ -39,7 +39,7 @@ public class FundsController {
         if (names == null) {
             throw new IllegalArgumentException("Please input the fund name.");
         } else if (managerIds == null) {
-            throw new IllegalArgumentException("Please input the ID of an existing manager. Otherwise, please create the new manager first.")
+            throw new IllegalArgumentException("Please input the ID of an existing manager. Otherwise, please create the new manager first.");
         } else {
             fundService.addNewFund(names[0], Long.parseLong(managerIds[0]));
             return "redirect:funds";
