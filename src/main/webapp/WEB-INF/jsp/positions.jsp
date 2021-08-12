@@ -24,21 +24,19 @@
 <div style="width:500px;margin:20px auto;text-align: center">
 	<table align='center' border='1' cellspacing='0'>
 	    <tr>
-	        <td>id</td>
-	        <td>name</td>
-			<td>managers</td>
-<%--			<td>manager_id</td>--%>
-	        <td>edit</td>
-	        <td>delete</td>
+	        <td>Position ID</td>
+	        <td>Security ID</td>
+	        <td>Quantity</td>
+	        <td>Date Purchased</td>
 	    </tr>
 	    <c:forEach items="${page.content}" var="c" varStatus="st">
 	        <tr>
 	            <td>${c.id}</td>
-	            <td>${c.name}</td>
-				<td>${c.manager.getManagerName()}</td>
-<%--				<td>${c.manager.id}</td>--%>
-				<td><a href="funds/${c.id}">edit</a></td>
-				<td><a class="delete" href="funds/${c.id}">delete</a></td>
+	            <td>${c.getSecurityId()}</td>
+				<td>${c.quantity}</td>
+				<td>${c.date}</td>
+				<td><a href="positions/${c.id}">edit</a></td>
+				<td><a class="delete" href="positions/${c.id}">delete</a></td>
 	        </tr>
 	    </c:forEach>
 	    
@@ -54,14 +52,10 @@
             <a href="?start=${page.totalPages-1}">[last page]</a>
 	</div>
 	<br>
-
-	<form action="funds" method="post">
-	name: <input name="name">
-	manager_id: <input name="manager_id">
-	<br>
-
+	<form action="positions" method="post">
+	symbol: <input name="symbol"> <br>
 	<button type="submit">submit</button>
-<%--	<a href="${pageContext.request.contextPath}/funds/${param.name}/${param.manager_id}">submit</a>--%>
+	
 	</form>
 	
 	<form id="formdelete" action="" method="POST" >
