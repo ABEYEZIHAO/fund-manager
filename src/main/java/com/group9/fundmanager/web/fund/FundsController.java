@@ -58,6 +58,14 @@ public class FundsController {
     	return "redirect:/funds";
     }
 
+//    @PutMapping("/funds/{id}")
+//    public String updateFund(WebRequest webRequest) throws Exception {
+//        String[] names = webRequest.getParameterValues("name");
+//        String[] managerIds = webRequest.getParameterValues("manager_id");
+//        fundService.updateFund(names[0], managerIds[0]);
+//        return "redirect:/funds";
+//    }
+
     @GetMapping("/funds/{id}")
     public String getFund(@PathVariable("id") Long id,Model m) throws Exception {
     	Fund c= fundService.getFund(id);
