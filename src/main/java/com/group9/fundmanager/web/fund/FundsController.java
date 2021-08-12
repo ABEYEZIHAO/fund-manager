@@ -29,8 +29,8 @@ public class FundsController {
     }
 
 	@PostMapping("/funds")
-    public String addFund(Fund newFund) throws Exception {
-    	fundService.addNewFund(newFund);
+    public String addFund(@PathVariable("name") String name, @PathVariable("managerId") Long managerId) throws Exception {
+    	fundService.addNewFund(name, managerId);
     	return "redirect:funds";
     }
 
