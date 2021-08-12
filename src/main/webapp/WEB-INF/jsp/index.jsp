@@ -7,6 +7,7 @@
 --%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
          pageEncoding="UTF-8" import="java.sql.*"%>
+<%@ page import="java.net.URLEncoder" %>
 <html>
 <head>
   <title>index</title>
@@ -15,7 +16,7 @@
 <%
   String driver_name = "com.mysql.cj.jdbc.Driver";	//mysql数据库驱动
   String user_name = "root";						//访问数据库的用户
-  String password = {ur DB password};					//用户登陆密码
+  String password = "ye11&yang44";					//用户登陆密码
   String db_name="fundsys";						//要访问的数据库
 
 
@@ -60,17 +61,17 @@
   <tr>
     <th>FundsName</th>
     <th>Managers</th>
-    <th>Date</th>
-    <th>Quantity</th>
     <th>Symbol</th>
+    <th>Quantity</th>
+    <th>Date</th>
   </tr>
   <% while (rs.next()) { %>
   <tr>
     <td><%out.print(rs.getString(1));%></td>
     <td><%out.print(rs.getString(2));%></td>
-    <td><%out.print(rs.getString(3));%></td>
-    <td><%out.print(rs.getString(4));%></td>
     <td><%out.print(rs.getString(5));%></td>
+    <td><%out.print(rs.getString(4));%></td>
+    <td><%out.print(rs.getString(3));%></td>
   </tr>
   <% } %>
 </table>
