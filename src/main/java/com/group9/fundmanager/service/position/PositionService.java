@@ -49,7 +49,7 @@ public class PositionService {
         if (position.isPresent()) {
             return position.get();
         } else {
-            throw new EntityNotFoundException(id);
+            throw new EntityNotFoundException(id, "position");
         }
     }
 
@@ -78,7 +78,7 @@ public class PositionService {
             positionDao.deleteById(id);
         }
         else{
-            throw new EntityNotFoundException(id);
+            throw new EntityNotFoundException(id, "position");
         }
     }
 

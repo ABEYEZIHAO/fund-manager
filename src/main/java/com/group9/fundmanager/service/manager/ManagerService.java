@@ -48,7 +48,7 @@ public class ManagerService {
         if (manager.isPresent()) {
             return manager.get();
         } else {
-            throw new EntityNotFoundException(id);
+            throw new EntityNotFoundException(id, "manager");
         }
     }
 
@@ -76,7 +76,7 @@ public class ManagerService {
             managerDao.deleteById(id);
         }
         else{
-            throw new EntityNotFoundException(id);
+            throw new EntityNotFoundException(id, "manager");
         }
     }
 

@@ -45,7 +45,7 @@ public class SecurityService {
         if (security.isPresent()) {
             return security.get();
         } else {
-            throw new EntityNotFoundException(id);
+            throw new EntityNotFoundException(id, "security");
         }
     }
 
@@ -70,7 +70,7 @@ public class SecurityService {
             securityDao.deleteById(id);
         }
         else{
-            throw new EntityNotFoundException(id);
+            throw new EntityNotFoundException(id, "security");
         }
     }
 

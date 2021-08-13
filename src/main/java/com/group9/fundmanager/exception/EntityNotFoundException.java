@@ -8,10 +8,12 @@ import org.springframework.web.bind.annotation.ResponseStatus;
  */
 @ResponseStatus(HttpStatus.NOT_FOUND)
 public class EntityNotFoundException extends IllegalArgumentException {
-    private final Long fundId;
+    private final Long id;
+    private final String entity;
 
-    public EntityNotFoundException(Long fundId) {
-        super("Fund with Id " + fundId +  " not found.");
-        this.fundId = fundId;
+    public EntityNotFoundException(Long id, String entity) {
+        super("The " + entity + " with Id " + id +  " not found.");
+        this.id = id;
+        this.entity = entity;
     }
 }

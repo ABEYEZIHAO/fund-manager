@@ -54,7 +54,7 @@ public class FundService {
         if (fund.isPresent()) {
             return fund.get();
         } else {
-            throw new EntityNotFoundException(id);
+            throw new EntityNotFoundException(id, "fund");
         }
     }
 
@@ -92,7 +92,7 @@ public class FundService {
             fundDao.deleteById(id);
         }
         else{
-            throw new EntityNotFoundException(id);
+            throw new EntityNotFoundException(id, "fund");
         }
     }
 
