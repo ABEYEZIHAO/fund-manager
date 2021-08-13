@@ -53,6 +53,7 @@
 	<form action="funds" method="post">
 		Name: <input name="name">
 		Manager ID: <input name="manager_id">
+		Position ID: <input name="position_id">
 	<br>
 
 	<button type="submit">submit</button>

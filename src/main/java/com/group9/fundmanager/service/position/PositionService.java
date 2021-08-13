@@ -61,7 +61,7 @@ public class PositionService {
     public void addNewPosition(String symbol, int quantity) {
         Optional<Security> existingSecurity = securityDao.findSecurityBySymbol(symbol);
         if (existingSecurity.isPresent()) {
-            Position newPosition = new Position(existingSecurity.get(), quantity, LocalDate.now());
+            Position newPosition = new Position(existingSecurity.get(), quantity, LocalDate.now(), null);
             positionDao.save(newPosition);
         } else {
             throw new IllegalArgumentException("The security with name " + symbol + " not found.");

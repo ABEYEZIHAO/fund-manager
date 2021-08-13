@@ -27,7 +27,7 @@
   Connection conn = DriverManager.getConnection(url);
 
   Statement stmt = conn.createStatement();
-  String sql = "select name,managers.full_name,positions.date,positions.quantity,securities.symbol from funds f left join positions on f.id = positions.id left join managers on f.manager_id = managers.id left join securities on f.id = securities.id;";
+  String sql = "select name,managers.full_name,positions.date,positions.quantity,securities.symbol from funds f left join positions on f.id = positions.position_id left join managers on f.manager_id = managers.id left join securities on positions.security_id = securities.id;";
   ResultSet rs = stmt.executeQuery(sql);
 
 
@@ -59,7 +59,7 @@
 <body>
 <table align="center" cellspacing="0" border="1">
   <tr>
-    <th>FundsName</th>
+    <th>Funds Name</th>
     <th>Managers</th>
     <th>Symbol</th>
     <th>Quantity</th>
