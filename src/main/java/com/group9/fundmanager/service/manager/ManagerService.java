@@ -89,7 +89,7 @@ public class ManagerService {
 
     public String listManager(Model m, int start, int size) throws Exception {
         start = start<0?0:start;
-//		List<Manager> manager = ManageDao.findAll(Sort.by(Sort.Direction.DESC, "id");
+
         Sort sort = Sort.by(Sort.Direction.ASC, "id");
         Pageable pageable = PageRequest.of(start, size, sort);
         Page<Manager> page =managerDao.findAll(pageable);

@@ -26,30 +26,10 @@
   Connection conn = DriverManager.getConnection(url);
 
   Statement stmt = conn.createStatement();
-  String sql = "select name,managers.full_name,positions.date,positions.quantity,securities.symbol from funds f left join positions on f.id = positions.id left join managers on f.manager_id = managers.id left join securities on f.id = securities.id;";
+  String sql = "select name,managers.full_name,positions.date,positions.quantity,securities.symbol from funds f left join positions on f.id = positions.position_id left join managers on f.manager_id = managers.id left join securities on positions.security_id = securities.id;";
   ResultSet rs = stmt.executeQuery(sql);
 
 
-//  while(rs.next()){
-//    out.print(rs.getString(1)+"");
-//    out.print(" | ");
-//    out.print(rs.getString(2)+"");
-//    out.print(" | ");
-//    out.print(rs.getString(3)+"");
-//    out.print(" | ");
-//    out.print(rs.getString(4)+"");
-//    out.print(" | ");
-//    out.print(rs.getString(5)+"");
-//    out.print(" | ");
-//    out.print("<br>");
-//  }
-//  out.print("<br>");
-
-
-  //关闭相关参数
-//  rs.close();
-//  stmt.close();
-//  conn.close();
 %>
 
 <head>
@@ -73,7 +53,14 @@
     <td><%out.print(rs.getString(5));%></td>
   </tr>
   <% } %>
+
 </table>
+<div align="center">
+  <a href="funds">[funds]</a>
+  <a href="managers">[managers]</a>
+  <a href="positions">[positions]</a>
+  <a href="securities">[securities]</a>
+</div>
 </body>
 </html>
 

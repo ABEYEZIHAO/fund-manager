@@ -47,6 +47,7 @@
             <a href="?start=${page.number-1}">[prev]</a>
             <a href="?start=${page.number+1}">[next]</a>
             <a href="?start=${page.totalPages-1}">[last page]</a>
+			<a href="index">[index]</a>
 	</div>
 	<br>
 
