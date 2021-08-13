@@ -1,8 +1,6 @@
 package com.group9.fundmanager.web.security;
 
-import com.group9.fundmanager.pojo.Manager;
 import com.group9.fundmanager.pojo.Security;
-import com.group9.fundmanager.service.manager.ManagerService;
 import com.group9.fundmanager.service.security.SecurityService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -10,7 +8,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 /**
- * @author abe
+ * @author Abe
  */
 @Controller
 public class SecurityController {
@@ -27,25 +25,25 @@ public class SecurityController {
     }
 
     @PostMapping("/securities")
-    public String addSecurity(Security newSecurity) throws Exception {
+    public String addSecurity(Security newSecurity) {
         securityService.addNewSecurity(newSecurity);
         return "redirect:securities";
     }
 
     @DeleteMapping("/securities/{id}")
-    public String deleteSecurity(@PathVariable("id") Long id) throws Exception {
+    public String deleteSecurity(@PathVariable("id") Long id) {
         securityService.deleteSecurity(id);
         return "redirect:/securities";
     }
 
     @PutMapping("/securities/{id}")
-    public String updateSecurity(Security newSecurity) throws Exception {
+    public String updateSecurity(Security newSecurity) {
         securityService.updateSecurity(newSecurity);
         return "redirect:/securities";
     }
 
     @GetMapping("/securities/{id}")
-    public String getSecurity(@PathVariable("id") Long id,Model m) throws Exception {
+    public String getSecurity(@PathVariable("id") Long id, Model m) {
         Security c= securityService.getSecurity(id);
         m.addAttribute("c", c);
         return "editSecurity";

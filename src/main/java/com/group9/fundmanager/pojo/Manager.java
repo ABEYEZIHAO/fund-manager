@@ -7,9 +7,11 @@ import org.springframework.lang.Nullable;
 
 import javax.persistence.*;
 import java.io.Serializable;
-import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * @author Tinsley
+ */
 @Entity
 @Table(name = "managers")
 @JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id")

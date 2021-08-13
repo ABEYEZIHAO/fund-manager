@@ -17,8 +17,8 @@ import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
 
-/*
-
+/**
+ * @author Dennis
  */
 @Service
 public class PositionService {
@@ -82,13 +82,23 @@ public class PositionService {
         }
     }
 
-    public void updatePosition(Position newPosition) throws Exception {
+    /**
+     * Update the position information
+     * @param newPosition a new position including the modified information
+     */
+    public void updatePosition(Position newPosition) {
         positionDao.save(newPosition);
     }
 
-    public String listPosition(Model m, int start, int size) throws Exception {
+    /**
+     * Implement the PAGE function
+     * @param m model
+     * @param start start page
+     * @param size page size
+     * @return positions.jsp
+     */
+    public String listPosition(Model m, int start, int size) {
         start = start<0?0:start;
-//		List<Fund> fund = FundDao.findAll(Sort.by(Sort.Direction.DESC, "id");
         Sort sort = Sort.by(Sort.Direction.ASC, "id");
         Pageable pageable = PageRequest.of(start, size, sort);
         Page<Position> page =positionDao.findAll(pageable);

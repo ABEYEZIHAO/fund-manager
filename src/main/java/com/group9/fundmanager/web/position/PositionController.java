@@ -10,6 +10,9 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.context.request.WebRequest;
 
 
+/**
+ * @author Dennis
+ */
 @Controller
 public class PositionController {
     private final PositionService positionService;
@@ -25,7 +28,7 @@ public class PositionController {
     }
 
     @PostMapping("/positions")
-    public String addPosition(WebRequest webRequest) throws Exception {
+    public String addPosition(WebRequest webRequest) {
         String[] symbols = webRequest.getParameterValues("symbol");
         String[] quantities = webRequest.getParameterValues("quantity");
         if (symbols == null) {
@@ -39,19 +42,19 @@ public class PositionController {
     }
 
     @DeleteMapping("/positions/{id}")
-    public String deletePosition(@PathVariable("id") Long id) throws Exception {
+    public String deletePosition(@PathVariable("id") Long id) {
         positionService.deletePosition(id);
         return "redirect:/positions";
     }
 
     @PutMapping("/positions/{id}")
-    public String updatePosition(Position newPosition) throws Exception {
+    public String updatePosition(Position newPosition) {
         positionService.updatePosition(newPosition);
         return "redirect:/positions";
     }
 
     @GetMapping("/positions/{id}")
-    public String getSecurity(@PathVariable("id") Long id,Model m) throws Exception {
+    public String getSecurity(@PathVariable("id") Long id, Model m) {
         Position c= positionService.getPosition(id);
         m.addAttribute("c", c);
         return "editPosition";

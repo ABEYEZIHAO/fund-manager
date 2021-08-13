@@ -4,8 +4,10 @@ import com.fasterxml.jackson.annotation.JsonIdentityReference;
 
 import javax.persistence.*;
 import java.time.LocalDate;
-import java.util.Date;
 
+/**
+ * @author Tinsley
+ */
 @Entity
 @Table(name = "positions")
 public class Position {
