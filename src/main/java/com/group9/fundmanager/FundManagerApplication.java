@@ -44,23 +44,28 @@ public class FundManagerApplication {
                     new Position(1L,
                             savedSecurities.get(0),
                             100,
-                            LocalDate.of(2016, 1, 10)),
+                            LocalDate.of(2016, 1, 10),
+                            null),
                     new Position(2L,
                             savedSecurities.get(0),
                             250,
-                            LocalDate.of(2016, 9, 23)),
+                            LocalDate.of(2016, 9, 23),
+                            null),
                     new Position(3L,
                             savedSecurities.get(0),
                             200,
-                            LocalDate.of(2016, 8, 14)),
+                            LocalDate.of(2016, 8, 14),
+                            null),
                     new Position(4L,
                             savedSecurities.get(1),
                             125,
-                            LocalDate.of(2016, 9, 23)),
+                            LocalDate.of(2016, 9, 23),
+                            null),
                     new Position(5L,
                             savedSecurities.get(2),
                             75,
-                            LocalDate.of(2017, 1, 27))
+                            LocalDate.of(2017, 1, 27),
+                            null)
             );
 
             List<Position> savedPositions = positionDao.saveAll(positions);

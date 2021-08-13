@@ -2,6 +2,7 @@ package com.group9.fundmanager.service.fund;
 
 import com.group9.fundmanager.dao.fund.FundDao;
 import com.group9.fundmanager.dao.manager.ManagerDao;
+import com.group9.fundmanager.dao.position.PositionDao;
 import com.group9.fundmanager.exception.EntityNotFoundException;
 import com.group9.fundmanager.pojo.Fund;
 import com.group9.fundmanager.exception.NameAlreadyInUseException;
@@ -12,12 +13,10 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
-import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
 
-import java.util.ArrayList;
+import java.io.IOException;
 import java.util.List;
 import java.util.Optional;
 
@@ -28,11 +27,13 @@ import java.util.Optional;
 public class FundService {
     private final FundDao fundDao;
     private final ManagerDao managerDao;
+    private final PositionDao positionDao;
 
     @Autowired
-    public FundService(FundDao fundDao, ManagerDao managerDao) {
+    public FundService(FundDao fundDao, ManagerDao managerDao, PositionDao positionDao) {
         this.fundDao = fundDao;
         this.managerDao = managerDao;
+        this.positionDao = positionDao;
     }
 
     /**
@@ -62,13 +63,24 @@ public class FundService {
      * @param name name of the fund
      * @param managerId ID of the manager
      */
-    public void addNewFund(String name, Long managerId) {
-        Optional<Fund> existingUser = fundDao.findFundByName(name);
-        if(existingUser.isPresent()){
-            throw new NameAlreadyInUseException(name);
+    public void addNewFund(String name, Long managerId, Long positionId) throws IOException, ClassNotFoundException {
+        Optional<Fund> existingFund = fundDao.findFundByName(name);
+
+        if (positionDao.existsById(positionId)) {
+            if(existingFund.isPresent()){
+                // If the user exists, add the position to this fund
+                existingFund.get().getPositions().add(positionDao.getById(positionId));
+//            throw new NameAlreadyInUseException(name);
+            } else {
+                Fund newFund = new Fund(name,
+                        managerDao.getById(managerId),
+                        com.sun.tools.javac.util.List.of(positionDao.getById(positionId)));
+                fundDao.save(newFund);
+            }
+        } else {
+            throw new IllegalArgumentException("Position " + String.valueOf(positionId) + "  not found.");
         }
-        Fund newFund = new Fund(name, managerDao.getById(managerId), new ArrayList<Position>());
-        fundDao.save(newFund);
+
     }
 
     /**

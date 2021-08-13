@@ -26,20 +26,26 @@ public class Position {
     @Column(name = "date")
     private LocalDate date;
 
+    @OneToOne
+    @JsonIdentityReference(alwaysAsId = true)
+    private Fund fund;
+
     public Position() {
     }
 
-    public Position(Security security, int quantity, LocalDate date) {
+    public Position(Security security, int quantity, LocalDate date, Fund fund) {
         this.security = security;
         this.quantity = quantity;
         this.date = date;
+        this.fund = fund;
     }
 
-    public Position(Long id, Security security, int quantity, LocalDate date) {
+    public Position(Long id, Security security, int quantity, LocalDate date, Fund fund) {
         this.id = id;
         this.security = security;
         this.quantity = quantity;
         this.date = date;
+        this.fund = fund;
     }
 
     public Long getId() {
