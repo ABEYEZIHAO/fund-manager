@@ -9,9 +9,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.context.request.WebRequest;
 
-/**
- * @author dennis
- */
+
 @Controller
 public class PositionController {
     private final PositionService positionService;
