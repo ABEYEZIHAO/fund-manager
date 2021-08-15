@@ -19,7 +19,7 @@ import java.util.List;
 import java.util.Optional;
 
 /**
- * @author abe
+ * @author Dennis
  */
 @Service
 public class ManagerService {
@@ -48,7 +48,7 @@ public class ManagerService {
         if (manager.isPresent()) {
             return manager.get();
         } else {
-            throw new EntityNotFoundException(id);
+            throw new EntityNotFoundException(id, "manager");
         }
     }
 
@@ -60,7 +60,7 @@ public class ManagerService {
     public void addNewManager(String firstName, String lastName) {
         Optional<Manager> existingManage = managerDao.findManagerByFullName(firstName + ' ' + lastName);
         if(existingManage.isPresent()){
-            throw new NameAlreadyInUseException(firstName +' ' + lastName);
+            throw new NameAlreadyInUseException("Manager", firstName +' ' + lastName);
         } else {
             Manager newManager = new Manager(firstName, lastName, new ArrayList<Fund>());
             managerDao.save(newManager);
@@ -76,10 +76,17 @@ public class ManagerService {
             managerDao.deleteById(id);
         }
         else{
-            throw new EntityNotFoundException(id);
+            throw new EntityNotFoundException(id, "manager");
         }
     }
 
+    /**
+     * Update the manager information
+     * @param id ID specifies which manager we wanna modify
+     * @param firstName Target first name of the manager
+     * @param lastName Target last name of the manager
+     * @throws Exception Capture some potential exceptions caused by ListTool.deepCopy
+     */
     public void updateManager(Long id, String firstName, String lastName) throws Exception {
         Optional<Manager> originalManager = managerDao.findById(id);
         if (originalManager.isPresent()) {
@@ -87,9 +94,15 @@ public class ManagerService {
         }
     }
 
-    public String listManager(Model m, int start, int size) throws Exception {
+    /**
+     * Implement the PAGE function
+     * @param m model
+     * @param start start page
+     * @param size page size
+     * @return managers.jsp
+     */
+    public String listManager(Model m, int start, int size) {
         start = start<0?0:start;
-
         Sort sort = Sort.by(Sort.Direction.ASC, "id");
         Pageable pageable = PageRequest.of(start, size, sort);
         Page<Manager> page =managerDao.findAll(pageable);

@@ -9,7 +9,7 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.Optional;
 
 /**
- * @author dennis
+ * @author Dennis
  */
 public interface FundDao extends JpaRepository<Fund, Long>{
     /**
@@ -20,8 +20,8 @@ public interface FundDao extends JpaRepository<Fund, Long>{
     Optional<Fund> findFundByName(String name);
 
     /**
-     *
-     * @param aLong
+     * Delete a fund with the specific ID
+     * @param aLong ID of the fund user wanna delete
      */
     @Override
     @Transactional(rollbackFor = Exception.class)

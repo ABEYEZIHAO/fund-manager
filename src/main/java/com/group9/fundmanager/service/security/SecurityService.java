@@ -16,7 +16,7 @@ import java.util.List;
 import java.util.Optional;
 
 /**
- * @author abe
+ * @author Abe
  */
 @Service
 public class SecurityService {
@@ -45,7 +45,7 @@ public class SecurityService {
         if (security.isPresent()) {
             return security.get();
         } else {
-            throw new EntityNotFoundException(id);
+            throw new EntityNotFoundException(id, "security");
         }
     }
 
@@ -56,7 +56,7 @@ public class SecurityService {
     public void addNewSecurity(Security newSecurity) {
         Optional<Security> existingSecurity = securityDao.findSecurityBySymbol(newSecurity.getSymbol());
         if(existingSecurity.isPresent()){
-            throw new NameAlreadyInUseException(newSecurity.getSymbol());
+            throw new NameAlreadyInUseException("Security", newSecurity.getSymbol());
         }
         securityDao.save(newSecurity);
     }
@@ -70,17 +70,27 @@ public class SecurityService {
             securityDao.deleteById(id);
         }
         else{
-            throw new EntityNotFoundException(id);
+            throw new EntityNotFoundException(id, "security");
         }
     }
 
-    public void updateSecurity(Security newSecurity) throws Exception {
+    /**
+     * Update the security information
+     * @param newSecurity a new security including the modified information
+     */
+    public void updateSecurity(Security newSecurity) {
         securityDao.save(newSecurity);
     }
 
-    public String listSecurity(Model m, int start, int size) throws Exception {
+    /**
+     * Implement the PAGE function
+     * @param m model
+     * @param start start page
+     * @param size page size
+     * @return securities.jsp
+     */
+    public String listSecurity(Model m, int start, int size) {
         start = start<0?0:start;
-//		List<Security> security = SecurityDao.findAll(Sort.by(Sort.Direction.DESC, "id");
         Sort sort = Sort.by(Sort.Direction.ASC, "id");
         Pageable pageable = PageRequest.of(start, size, sort);
         Page<Security> page = securityDao.findAll(pageable);

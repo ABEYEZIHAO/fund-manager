@@ -3,15 +3,14 @@ package com.group9.fundmanager.pojo;
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.JsonIdentityReference;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
-import javafx.geometry.Pos;
 
 import javax.persistence.*;
 import java.io.Serializable;
-import java.sql.ClientInfoStatus;
-import java.util.ArrayList;
 import java.util.List;
-import java.util.jar.Manifest;
 
+/**
+ * @author Tinsley
+ */
 @Entity
 @Table(name = "funds")
 @JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id")

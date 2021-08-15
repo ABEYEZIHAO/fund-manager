@@ -1,8 +1,6 @@
 package com.group9.fundmanager.web.manager;
 
-import com.group9.fundmanager.pojo.Fund;
 import com.group9.fundmanager.pojo.Manager;
-import com.group9.fundmanager.service.fund.FundService;
 import com.group9.fundmanager.service.manager.ManagerService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -10,10 +8,9 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.context.request.WebRequest;
 
-import java.util.jar.Manifest;
 
 /**
- * @author abe
+ * @author Abe
  */
 @Controller
 public class ManagerController {
@@ -30,7 +27,7 @@ public class ManagerController {
     }
 
     @PostMapping("/managers")
-    public String addManager(WebRequest webRequest) throws Exception {
+    public String addManager(WebRequest webRequest) {
         String[] firstNames = webRequest.getParameterValues("first_name");
         String[] lastNames = webRequest.getParameterValues("last_name");
 
@@ -45,7 +42,7 @@ public class ManagerController {
     }
 
     @DeleteMapping("/managers/{id}")
-    public String deleteManager(@PathVariable("id") Long id) throws Exception {
+    public String deleteManager(@PathVariable("id") Long id) {
         managerService.deleteManager(id);
         return "redirect:/managers";
     }
@@ -54,14 +51,19 @@ public class ManagerController {
     public String updateManager(@PathVariable("id") Long id, WebRequest webRequest) throws Exception {
         String[] firstNames = webRequest.getParameterValues("first_name");
         String[] lastNames = webRequest.getParameterValues("last_name");
-        assert firstNames != null;
-        assert lastNames != null;
-        managerService.updateManager(id, firstNames[0], lastNames[0]);
-        return "redirect:/managers";
+
+        if (firstNames == null) {
+            throw new IllegalArgumentException("Please input the first name");
+        } else if (lastNames == null) {
+            throw new IllegalArgumentException("Please input the last name");
+        } else {
+            managerService.updateManager(id, firstNames[0], lastNames[0]);
+            return "redirect:/managers";
+        }
     }
 
     @GetMapping("/managers/{id}")
-    public String getManager(@PathVariable("id") Long id,Model m) throws Exception {
+    public String getManager(@PathVariable("id") Long id, Model m) {
         Manager c= managerService.getManager(id);
         m.addAttribute("c", c);
         return "editManager";

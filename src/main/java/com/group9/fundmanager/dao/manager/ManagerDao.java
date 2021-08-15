@@ -6,7 +6,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import java.util.Optional;
 
 /**
- * @author abe
+ * @author Abe
  */
 public interface ManagerDao extends JpaRepository<Manager, Long>{
     /**

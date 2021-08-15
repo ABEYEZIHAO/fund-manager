@@ -5,8 +5,6 @@ import com.group9.fundmanager.dao.manager.ManagerDao;
 import com.group9.fundmanager.dao.position.PositionDao;
 import com.group9.fundmanager.exception.EntityNotFoundException;
 import com.group9.fundmanager.pojo.Fund;
-import com.group9.fundmanager.exception.NameAlreadyInUseException;
-import com.group9.fundmanager.pojo.Position;
 import com.group9.fundmanager.tool.ListTool;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -21,7 +19,7 @@ import java.util.List;
 import java.util.Optional;
 
 /**
- * @author abe
+ * @author Abe
  */
 @Service
 public class FundService {
@@ -54,7 +52,7 @@ public class FundService {
         if (fund.isPresent()) {
             return fund.get();
         } else {
-            throw new EntityNotFoundException(id);
+            throw new EntityNotFoundException(id, "fund");
         }
     }
 
@@ -63,14 +61,13 @@ public class FundService {
      * @param name name of the fund
      * @param managerId ID of the manager
      */
-    public void addNewFund(String name, Long managerId, Long positionId) throws IOException, ClassNotFoundException {
+    public void addNewFund(String name, Long managerId, Long positionId) {
         Optional<Fund> existingFund = fundDao.findFundByName(name);
 
         if (positionDao.existsById(positionId)) {
             if(existingFund.isPresent()){
                 // If the user exists, add the position to this fund
                 existingFund.get().getPositions().add(positionDao.getById(positionId));
-//            throw new NameAlreadyInUseException(name);
             } else {
                 Fund newFund = new Fund(name,
                         managerDao.getById(managerId),
@@ -78,7 +75,7 @@ public class FundService {
                 fundDao.save(newFund);
             }
         } else {
-            throw new IllegalArgumentException("Position " + String.valueOf(positionId) + "  not found.");
+            throw new IllegalArgumentException("Position " + positionId + "  not found.");
         }
 
     }
@@ -92,10 +89,17 @@ public class FundService {
             fundDao.deleteById(id);
         }
         else{
-            throw new EntityNotFoundException(id);
+            throw new EntityNotFoundException(id, "fund");
         }
     }
 
+    /**
+     * Update the fund information
+     * @param id ID specifies which fund we wanna modify
+     * @param name Target name of the fund
+     * @param managerId ID of the target manager of the fund
+     * @throws Exception Capture some potential exceptions caused by ListTool.deepCopy
+     */
     public void updateFund(Long id, String name, Long managerId) throws Exception {
         Optional<Fund> originalFund = fundDao.findById(id);
         if (originalFund.isPresent()) {
@@ -103,9 +107,15 @@ public class FundService {
         }
     }
 
-    public String listFund(Model m, int start, int size) throws Exception {
+    /**
+     * Implement the PAGE function
+     * @param m model
+     * @param start start page
+     * @param size page size
+     * @return funds.jsp
+     */
+    public String listFund(Model m, int start, int size) {
         start = start<0?0:start;
-//		List<Fund> fund = FundDao.findAll(Sort.by(Sort.Direction.DESC, "id");
         Sort sort = Sort.by(Sort.Direction.ASC, "id");
         Pageable pageable = PageRequest.of(start, size, sort);
         Page<Fund> page =fundDao.findAll(pageable);
