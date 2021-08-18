@@ -14,6 +14,7 @@ import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.springframework.ui.Model;
 
+//import java.util.List;
 import java.io.IOException;
 import java.util.List;
 import java.util.Optional;
@@ -71,7 +72,7 @@ public class FundService {
             } else {
                 Fund newFund = new Fund(name,
                         managerDao.getById(managerId),
-                        com.sun.tools.javac.util.List.of(positionDao.getById(positionId)));
+                        java.util.List.of(positionDao.getById(positionId)));
                 fundDao.save(newFund);
             }
         } else {
