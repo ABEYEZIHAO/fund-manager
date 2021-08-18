@@ -25,7 +25,7 @@ pipeline {
         stage('Build docker image') {
             steps {
 //                 sh 'mvn dockerfile:build'
-                sh 'docker compose up -f'
+                sh 'docker-compose up -d'
             }
         }
         stage('Push docker image to Docker Hub') {
