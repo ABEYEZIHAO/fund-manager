@@ -32,7 +32,7 @@ public class FundManagerApplication {
     @Bean
     CommandLineRunner commandLineRunner(FundDao fundDao, ManagerDao managerDao, SecurityDao securityDao, PositionDao positionDao) {
         return args -> {
-            List<Security> securities = com.sun.tools.javac.util.List.of(
+            List<Security> securities = List.of(
                     new Security(1L,
                             "IBM"),
                     new Security(2L,
@@ -43,7 +43,7 @@ public class FundManagerApplication {
 
             List<Security> savedSecurities = securityDao.saveAll(securities);
 
-            List<Position> positions = com.sun.tools.javac.util.List.of(
+            List<Position> positions = List.of(
                     new Position(1L,
                             savedSecurities.get(0),
                             100,
@@ -73,7 +73,7 @@ public class FundManagerApplication {
 
             List<Position> savedPositions = positionDao.saveAll(positions);
 
-            List<Manager> managers = com.sun.tools.javac.util.List.of(
+            List<Manager> managers = List.of(
                     new Manager(1L,
                             "Terry",
                             "Jones",
@@ -86,24 +86,24 @@ public class FundManagerApplication {
 
             List<Manager> savedManagers = managerDao.saveAll(managers);
 
-            List<Fund> funds = com.sun.tools.javac.util.List.of(
+            List<Fund> funds = List.of(
                     new Fund(1L,
                             "Olympic Memorial Fund",
                             savedManagers.get(0),
-                            com.sun.tools.javac.util.List.of(savedPositions.get(0),
+                            List.of(savedPositions.get(0),
                                     savedPositions.get(1))),
                     new Fund(2L,
                             "UK Overseas Income Fund",
                             savedManagers.get(0),
-                            com.sun.tools.javac.util.List.of(savedPositions.get(2))),
+                            List.of(savedPositions.get(2))),
                     new Fund(3L,
                             "North America Growth",
                             savedManagers.get(1),
-                            com.sun.tools.javac.util.List.of(savedPositions.get(3))),
+                            List.of(savedPositions.get(3))),
                     new Fund(4L,
                             "Global Tech Fund",
                             savedManagers.get(1),
-                            com.sun.tools.javac.util.List.of(savedPositions.get(4)))
+                            List.of(savedPositions.get(4)))
             );
 
             List<Fund> savedFunds = fundDao.saveAll(funds);

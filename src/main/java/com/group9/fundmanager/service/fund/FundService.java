@@ -71,7 +71,7 @@ public class FundService {
             } else {
                 Fund newFund = new Fund(name,
                         managerDao.getById(managerId),
-                        com.sun.tools.javac.util.List.of(positionDao.getById(positionId)));
+                        List.of(positionDao.getById(positionId)));
                 fundDao.save(newFund);
             }
         } else {

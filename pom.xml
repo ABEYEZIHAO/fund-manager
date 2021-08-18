@@ -3,12 +3,12 @@
     xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-  <groupId>com.dennis</groupId>
-  <artifactId>springboot</artifactId>
+  <groupId>com.group9</groupId>
+  <artifactId>fund-manager</artifactId>
   <version>0.0.1-SNAPSHOT</version>
-  <name>springboot</name>
-  <description>springboot</description>
-  <packaging>war</packaging>
+  <name>fund-manager</name>
+  <description>A fund manager system</description>
+  <packaging>jar</packaging>
   
   
     <parent>
