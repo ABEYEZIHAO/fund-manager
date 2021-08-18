@@ -11,19 +11,27 @@ pipeline {
                 sh 'mvn -B -DskipTests clean package'
             }
         }
-//         stage('Test') {
-//             steps {
+        stage('Test') {
+            steps {
 //                 sh 'mvn test'
-//             }
+                echo 'Testing....'
+            }
 //             post {
 //                 always {
 //                     junit 'target/surefire-reports/*.xml'
 //                 }
 //             }
-//         }
-        stage('Test') {
+        }
+        stage('Build docker image') {
             steps {
-                echo 'Testing....'
+//                 sh 'mvn dockerfile:build'
+                sh 'docker compose up -f'
+            }
+        }
+        stage('Push docker image to Docker Hub') {
+            steps {
+//                 sh 'mvn dockerfile:push'
+                echo 'Pushing to Docker Hub....'
             }
         }
         stage('Deploy') {

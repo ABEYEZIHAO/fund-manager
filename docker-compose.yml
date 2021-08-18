@@ -1,0 +1,27 @@
+version: "3.7"
+
+services:
+  app:
+    image: openjdk:11
+    command: sh -c "java -jar fundmanager.war"
+    ports:
+      - 8090:8090
+    working_dir: /app
+    volumes:
+      - ./:/app
+    environment:
+      MYSQL_HOST: mysql
+      MYSQL_USER: root
+      MYSQL_PASSWORD: reven2010
+      MYSQL_DB: fundsys
+
+  mysql:
+    image: mysql:8.0.26
+    volumes:
+      - fundsys-mysql-data:/var/lib/mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: reven2010
+      MYSQL_DATABASE: fundsys
+
+volumes:
+  fundsys-mysql-data:
