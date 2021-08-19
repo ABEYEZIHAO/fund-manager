@@ -25,9 +25,9 @@ public class SecurityController {
     }
 
     @PostMapping("/securities")
-    public String addSecurity(Security newSecurity) {
+    public void addSecurity(Security newSecurity) {
         securityService.addNewSecurity(newSecurity);
-        return "redirect:securities";
+//        return "redirect:securities";
     }
 
     @DeleteMapping("/securities/{id}")

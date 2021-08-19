@@ -27,7 +27,7 @@ public class ManagerController {
     }
 
     @PostMapping("/managers")
-    public String addManager(WebRequest webRequest) {
+    public void addManager(WebRequest webRequest) {
         String[] firstNames = webRequest.getParameterValues("first_name");
         String[] lastNames = webRequest.getParameterValues("last_name");
 
@@ -37,7 +37,7 @@ public class ManagerController {
             throw new IllegalArgumentException("Please input the last name");
         } else {
             managerService.addNewManager(firstNames[0], lastNames[0]);
-            return "redirect:managers";
+//            return "redirect:managers";
         }
     }
 
