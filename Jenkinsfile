@@ -38,11 +38,11 @@ pipeline {
             agent any
             steps {
 //                 sh "/usr/bin/docker-compose up --build -d"
+                sh 'docker build -t fund-manager .'
                 sh 'docker network create fundsys'
                 sh 'docker run -d --network fundsys --network-alias mysql -e MYSQL_ROOT_PASSWORD=reven2010 -e MYSQL_DATABASE=fundsys mysql:8.0.26'
                 sh 'docker run -dp 8090:8090 -w /app -v "$(pwd):/app" --network fundsys -e MYSQL_HOST=mysql -e MYSQL_USER=root -e MYSQL_PASSWORD=reven2010 -e MYSQL_DB=fundsys fund-manager'
                 sh '-c "yarn install && yarn run dev"'
-//                 sh 'docker build -t fund-manager.war .'
             }
         }
         stage('Push docker image to Docker Hub') {
