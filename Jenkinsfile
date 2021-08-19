@@ -3,12 +3,14 @@ pipeline {
         PATH = "$PATH:/usr/bin"
     }
 
-    agent {
-        docker {
-            image 'maven:3-jdk-11'
-            args '-v /root/.m2:/root/.m2'
-        }
-    }
+//     agent {
+//         docker {
+//             image 'maven:3-jdk-11'
+//             args '-v /root/.m2:/root/.m2'
+//         }
+//     }
+
+    agent any
 
     stages {
         stage('Build') {
@@ -31,7 +33,7 @@ pipeline {
             steps {
 //                 sh 'mvn dockerfile:build'
                 echo "PATH is: $PATH"
-                sh "docker-compose up --build -d"
+                sh "/usr/bin/docker-compose up --build -d"
             }
         }
         stage('Push docker image to Docker Hub') {
