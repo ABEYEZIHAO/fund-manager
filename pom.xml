@@ -8,7 +8,7 @@
   <version>0.0.1-SNAPSHOT</version>
   <name>fund-manager</name>
   <description>A fund manager system</description>
-  <packaging>jar</packaging>
+  <packaging>war</packaging>
   
   
     <parent>
@@ -27,12 +27,12 @@
             <artifactId>spring-boot-starter-tomcat</artifactId>
             
         </dependency>
-	    <dependency>
-		      <groupId>junit</groupId>
-		      <artifactId>junit</artifactId>
-		      <version>3.8.1</version>
-		      <scope>test</scope>
-	    </dependency>
+<!--	    <dependency>-->
+<!--		      <groupId>junit</groupId>-->
+<!--		      <artifactId>junit</artifactId>-->
+<!--		      <version>4.12</version>-->
+<!--		      <scope>test</scope>-->
+<!--	    </dependency>-->
   		<!-- servlet依赖. -->
         <dependency>
               <groupId>javax.servlet</groupId>
@@ -66,7 +66,12 @@
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-data-jpa</artifactId>
-		</dependency>        
+		</dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-test</artifactId>
+            <scope>test</scope>
+        </dependency>
     </dependencies>
 
     <properties>
