@@ -18,8 +18,8 @@ pipeline {
         }
         stage('Test') {
             steps {
-//                 sh 'mvn test'
-                echo 'Testing....'
+                sh 'mvn test'
+//                 echo 'Testing....'
             }
 //             post {
 //                 always {
@@ -31,7 +31,7 @@ pipeline {
             steps {
 //                 sh 'mvn dockerfile:build'
                 echo "PATH is: $PATH"
-                sh "/usr/bin/docker-compose up --build -d"
+//                 sh "/usr/bin/docker-compose up --build -d"
             }
         }
         stage('Push docker image to Docker Hub') {
