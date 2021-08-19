@@ -31,7 +31,7 @@ pipeline {
             steps {
 //                 sh 'mvn dockerfile:build'
                 echo "PATH is: $PATH"
-                sh "sudo /usr/bin/docker-compose up --build -d"
+                sh "docker-compose up --build -d"
             }
         }
         stage('Push docker image to Docker Hub') {
