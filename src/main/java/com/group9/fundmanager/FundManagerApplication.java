@@ -27,7 +27,7 @@ public class FundManagerApplication {
  
     public static void main(String[] args) {
         ApplicationContext apc = SpringApplication.run(FundManagerApplication.class, args);
-        System.out.println(apc);
+//        System.out.println(apc);
     }
 
     @Bean
