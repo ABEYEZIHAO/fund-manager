@@ -40,7 +40,7 @@ pipeline {
 //                 sh "/usr/bin/docker-compose up --build -d"
                 sh 'docker stop $(docker ps -a -q)'
                 sh 'docker rm $(docker ps -a -q)'
-                sh 'docker network rm $(docker ps -a -q)'
+                sh 'docker network rm $(docker network ls -q)'
 
                 sh 'docker build -t fund-manager .'
                 sh 'docker network create fundsys'
