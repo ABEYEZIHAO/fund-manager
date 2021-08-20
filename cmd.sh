@@ -1,7 +1,5 @@
 #!/bin/bash
 
-#docker build -t fund-manager .
-
 docker network create fundsys
 
 docker stop fundsql
