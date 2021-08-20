@@ -37,6 +37,12 @@ pipeline {
         stage('Build docker image') {
             agent any
             steps {
+                sh 'docker build -t fund-manager .'
+            }
+        }
+        stage('Run docker container') {
+            agent any
+            steps  {
                 sh 'sh cmd.sh'
             }
         }

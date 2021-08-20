@@ -1,6 +1,6 @@
 #!/bin/bash
 
-docker build -t fund-manager .
+#docker build -t fund-manager .
 
 docker network create fundsys
 
