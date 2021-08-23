@@ -13,7 +13,7 @@ import java.util.List;
  * @author Abe
  */
 @Controller
-@RequestMapping(path = "api/v1/managers")
+@RequestMapping(path = "/api/v1/managers")
 public class ManagerController {
     private final ManagerService managerService;
 

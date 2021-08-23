@@ -12,7 +12,7 @@ import java.util.List;
  * @author Abe
  */
 @Controller
-@RequestMapping(path = "api/v1/securities")
+@RequestMapping(path = "/api/v1/securities")
 public class SecurityController {
     private final SecurityService securityService;
 

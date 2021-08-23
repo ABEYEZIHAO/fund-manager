@@ -11,11 +11,11 @@ import java.util.List;
  */
 @RestController
 @RequestMapping(path = "/api/v1/funds")
-public class FundsController {
+public class FundController {
     private final FundService fundService;
 
     @Autowired
-    public FundsController(FundService fundService) {
+    public FundController(FundService fundService) {
         this.fundService = fundService;
     }
 

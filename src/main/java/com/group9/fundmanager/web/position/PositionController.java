@@ -14,7 +14,7 @@ import java.util.List;
  * @author Dennis
  */
 @Controller
-@RequestMapping(path = "{api/v1/positions")
+@RequestMapping(path = "/api/v1/positions")
 public class PositionController {
     private final PositionService positionService;
 
