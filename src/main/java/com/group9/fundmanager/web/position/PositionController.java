@@ -33,18 +33,13 @@ public class PositionController {
        return positionService.getPosition(id);
     }
 
-    @PostMapping(path = "{symbol}/{quantity}")
-    public void addPosition(@PathVariable("symbol") String symbol, @PathVariable("quantity") int quantity) {
-        positionService.addNewPosition(symbol, quantity);
+    @PostMapping
+    public void addPosition(@RequestBody Position newPosition) {
+        positionService.addNewPosition(newPosition);
     }
 
     @DeleteMapping("{id}")
     public void deletePosition(@PathVariable("id") Long id) {
         positionService.deletePosition(id);
-    }
-
-    @PutMapping("{id}")
-    public void updatePosition(Position newPosition) {
-        positionService.updatePosition(newPosition);
     }
 }

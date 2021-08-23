@@ -4,11 +4,10 @@ import com.group9.fundmanager.dao.manager.ManagerDao;
 import com.group9.fundmanager.exception.NameAlreadyInUseException;
 import com.group9.fundmanager.exception.EntityNotFoundException;
 import com.group9.fundmanager.pojo.Manager;
-import com.group9.fundmanager.tool.ListTool;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
+import javax.transaction.Transactional;
 import java.util.List;
 import java.util.Optional;
 
@@ -48,15 +47,13 @@ public class ManagerService {
 
     /**
      * Add a new manager
-     * @param firstName the first name of the new manager
-     * @param lastName the last name of the new manager
+     * @param newManager the new manager object
      */
-    public void addNewManager(String firstName, String lastName) {
-        Optional<Manager> existingManage = managerDao.findManagerByFullName(firstName + ' ' + lastName);
+    public void addNewManager(Manager newManager) {
+        Optional<Manager> existingManage = managerDao.findManagerByFullName(newManager.getFullName());
         if(existingManage.isPresent()){
-            throw new NameAlreadyInUseException("Manager", firstName +' ' + lastName);
+            throw new NameAlreadyInUseException("Manager", newManager.getFullName());
         } else {
-            Manager newManager = new Manager(firstName, lastName, new ArrayList<>());
             managerDao.save(newManager);
         }
     }
@@ -77,14 +74,18 @@ public class ManagerService {
     /**
      * Update the manager information
      * @param id ID specifies which manager we wanna modify
-     * @param firstName Target first name of the manager
-     * @param lastName Target last name of the manager
-     * @throws Exception Capture some potential exceptions caused by ListTool.deepCopy
+     * @param updatedManager the manager object with the updated information
      */
-    public void updateManager(Long id, String firstName, String lastName) throws Exception {
+    @Transactional(rollbackOn = Exception.class)
+    public void updateManager(Long id, Manager updatedManager) {
         Optional<Manager> originalManager = managerDao.findById(id);
         if (originalManager.isPresent()) {
-            managerDao.save(new Manager(id, firstName, lastName, ListTool.deepCopy(originalManager.get().getFunds())));
+            if (!id.equals(originalManager.get().getId())) {
+                throw new IllegalStateException("Manager ID in path and in request body are different.");
+            }
+            managerDao.save(updatedManager);
+        } else {
+            throw new EntityNotFoundException(id, "Manager");
         }
     }
 }

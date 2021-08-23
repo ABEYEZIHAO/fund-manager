@@ -8,7 +8,6 @@ import com.group9.fundmanager.pojo.Security;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
 
@@ -49,19 +48,18 @@ public class PositionService {
     }
 
     /**
-     * Add a new position
-     * @param symbol symbol of the security
-     * @param quantity quantity of the security
+     * Add a new position.
+     * If the security of the position exists, add the position. Otherwise, throw an exception.
+     * @param newPosition the new position object
      */
-    public void addNewPosition(String symbol, int quantity) {
+    public void addNewPosition(Position newPosition) {
+        String symbol = newPosition.getSecurity().getSymbol();
         Optional<Security> existingSecurity = securityDao.findSecurityBySymbol(symbol);
         if (existingSecurity.isPresent()) {
-            Position newPosition = new Position(existingSecurity.get(), quantity, LocalDate.now(), null);
             positionDao.save(newPosition);
         } else {
             throw new IllegalArgumentException("The security with name " + symbol + " not found.");
         }
-
     }
 
     /**
@@ -75,13 +73,5 @@ public class PositionService {
         else{
             throw new EntityNotFoundException(id, "position");
         }
-    }
-
-    /**
-     * Update the position information
-     * @param newPosition a new position including the modified information
-     */
-    public void updatePosition(Position newPosition) {
-        positionDao.save(newPosition);
     }
 }

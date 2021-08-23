@@ -9,11 +9,11 @@ import java.util.Optional;
  * @author Dennis
  */
 public interface PositionDao extends JpaRepository<Position,Long> {
-    /**
-     * Find a position having the specific ID
-     * @param id ID of the target Position
-     * @return a Position entity which has the specific ID
-     */
-    Optional<Position> findPositionById(Long id);
+//    /**
+//     * Find a position having the specific ID
+//     * @param id ID of the target Position
+//     * @return a Position entity which has the specific ID
+//     */
+//    Optional<Position> findPositionById(Long id);
 
 }

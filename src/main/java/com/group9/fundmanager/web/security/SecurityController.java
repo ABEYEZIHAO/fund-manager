@@ -41,8 +41,8 @@ public class SecurityController {
         securityService.deleteSecurity(id);
     }
 
-    @PutMapping("/securities/{id}")
-    public void updateSecurity(Security newSecurity) {
-        securityService.updateSecurity(newSecurity);
+    @PutMapping("{id}")
+    public void updateSecurity(@PathVariable("id") Long id, Security newSecurity) {
+        securityService.updateSecurity(id, newSecurity);
     }
 }

@@ -32,9 +32,9 @@ public class ManagerController {
         return managerService.getManager(id);
     }
 
-    @PostMapping("{first_name}/{last_name}")
-    public void addManager(@PathVariable("first_name") String firstName, @PathVariable("last_name") String lastName) {
-        managerService.addNewManager(firstName, lastName);
+    @PostMapping
+    public void addManager(@RequestBody Manager newManager) {
+        managerService.addNewManager(newManager);
     }
 
     @DeleteMapping("{id}")
@@ -42,8 +42,8 @@ public class ManagerController {
         managerService.deleteManager(id);
     }
 
-    @PutMapping("{id}/{first_name}/{last_name}")
-    public void updateManager(@PathVariable("id") Long id, @PathVariable("first_name") String firstName, @PathVariable("last_name") String lastName) throws Exception {
-        managerService.updateManager(id, firstName, lastName);
+    @PutMapping("{id}")
+    public void updateManager(@PathVariable("id") Long id, @RequestBody Manager updatedManager) {
+        managerService.updateManager(id, updatedManager);
     }
 }

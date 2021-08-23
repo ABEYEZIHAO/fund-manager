@@ -7,6 +7,7 @@ import com.group9.fundmanager.pojo.Security;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.transaction.Transactional;
 import java.util.List;
 import java.util.Optional;
 
@@ -71,9 +72,19 @@ public class SecurityService {
 
     /**
      * Update the security information
-     * @param newSecurity a new security including the modified information
+     * @param id ID of the security we wanna modify
+     * @param updatedSecurity a new security including the modified information
      */
-    public void updateSecurity(Security newSecurity) {
-        securityDao.save(newSecurity);
+    @Transactional(rollbackOn = Exception.class)
+    public void updateSecurity(Long id, Security updatedSecurity) {
+        Optional<Security> originalSecurity = securityDao.findById(id);
+        if (originalSecurity.isPresent()) {
+            if (!id.equals(originalSecurity.get().getId())) {
+                throw new IllegalStateException("Security ID in path and in request body are different.");
+            }
+            securityDao.save(updatedSecurity);
+        } else {
+            throw new EntityNotFoundException(id, "Security");
+        }
     }
 }
