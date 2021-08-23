@@ -7,14 +7,8 @@ import com.group9.fundmanager.exception.EntityNotFoundException;
 import com.group9.fundmanager.pojo.Fund;
 import com.group9.fundmanager.tool.ListTool;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageRequest;
-import org.springframework.data.domain.Pageable;
-import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
-import org.springframework.ui.Model;
 
-import java.io.IOException;
 import java.util.List;
 import java.util.Optional;
 
@@ -106,21 +100,5 @@ public class FundService {
         if (originalFund.isPresent()) {
             fundDao.save(new Fund(id, name, managerDao.getById(managerId), ListTool.deepCopy(originalFund.get().getPositions())));
         }
-    }
-
-    /**
-     * Implement the PAGE function
-     * @param m model
-     * @param start start page
-     * @param size page size
-     * @return funds.jsp
-     */
-    public String listFund(Model m, int start, int size) {
-        start = start<0?0:start;
-        Sort sort = Sort.by(Sort.Direction.ASC, "id");
-        Pageable pageable = PageRequest.of(start, size, sort);
-        Page<Fund> page =fundDao.findAll(pageable);
-        m.addAttribute("page", page);
-        return "funds";
     }
 }

@@ -3,16 +3,10 @@ package com.group9.fundmanager.service.manager;
 import com.group9.fundmanager.dao.manager.ManagerDao;
 import com.group9.fundmanager.exception.NameAlreadyInUseException;
 import com.group9.fundmanager.exception.EntityNotFoundException;
-import com.group9.fundmanager.pojo.Fund;
 import com.group9.fundmanager.pojo.Manager;
 import com.group9.fundmanager.tool.ListTool;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageRequest;
-import org.springframework.data.domain.Pageable;
-import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
-import org.springframework.ui.Model;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -62,7 +56,7 @@ public class ManagerService {
         if(existingManage.isPresent()){
             throw new NameAlreadyInUseException("Manager", firstName +' ' + lastName);
         } else {
-            Manager newManager = new Manager(firstName, lastName, new ArrayList<Fund>());
+            Manager newManager = new Manager(firstName, lastName, new ArrayList<>());
             managerDao.save(newManager);
         }
     }
@@ -92,21 +86,5 @@ public class ManagerService {
         if (originalManager.isPresent()) {
             managerDao.save(new Manager(id, firstName, lastName, ListTool.deepCopy(originalManager.get().getFunds())));
         }
-    }
-
-    /**
-     * Implement the PAGE function
-     * @param m model
-     * @param start start page
-     * @param size page size
-     * @return managers.jsp
-     */
-    public String listManager(Model m, int start, int size) {
-        start = start<0?0:start;
-        Sort sort = Sort.by(Sort.Direction.ASC, "id");
-        Pageable pageable = PageRequest.of(start, size, sort);
-        Page<Manager> page =managerDao.findAll(pageable);
-        m.addAttribute("page", page);
-        return "managers";
     }
 }

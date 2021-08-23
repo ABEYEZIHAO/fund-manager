@@ -6,12 +6,7 @@ import com.group9.fundmanager.exception.EntityNotFoundException;
 import com.group9.fundmanager.pojo.Position;
 import com.group9.fundmanager.pojo.Security;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageRequest;
-import org.springframework.data.domain.Pageable;
-import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
-import org.springframework.ui.Model;
 
 import java.time.LocalDate;
 import java.util.List;
@@ -88,21 +83,5 @@ public class PositionService {
      */
     public void updatePosition(Position newPosition) {
         positionDao.save(newPosition);
-    }
-
-    /**
-     * Implement the PAGE function
-     * @param m model
-     * @param start start page
-     * @param size page size
-     * @return positions.jsp
-     */
-    public String listPosition(Model m, int start, int size) {
-        start = start<0?0:start;
-        Sort sort = Sort.by(Sort.Direction.ASC, "id");
-        Pageable pageable = PageRequest.of(start, size, sort);
-        Page<Position> page =positionDao.findAll(pageable);
-        m.addAttribute("page", page);
-        return "positions";
     }
 }

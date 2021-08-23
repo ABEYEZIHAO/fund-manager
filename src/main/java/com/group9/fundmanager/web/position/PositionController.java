@@ -5,15 +5,16 @@ import com.group9.fundmanager.pojo.Position;
 import com.group9.fundmanager.service.position.PositionService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.context.request.WebRequest;
+
+import java.util.List;
 
 
 /**
  * @author Dennis
  */
 @Controller
+@RequestMapping(path = "{api/v1/positions")
 public class PositionController {
     private final PositionService positionService;
 
@@ -22,41 +23,28 @@ public class PositionController {
         this.positionService = positionService;
     }
 
-    @GetMapping("/positions")
-    public String listSecurity(Model m, @RequestParam(value = "start", defaultValue = "0") int start, @RequestParam(value = "size", defaultValue = "5") int size) throws Exception {
-        return positionService.listPosition(m, start, size);
+    @GetMapping
+    public List<Position> getSecurity() {
+        return positionService.getPosition();
     }
 
-    @PostMapping("/positions")
-    public String addPosition(WebRequest webRequest) {
-        String[] symbols = webRequest.getParameterValues("symbol");
-        String[] quantities = webRequest.getParameterValues("quantity");
-        if (symbols == null) {
-            throw new IllegalArgumentException("Please input the security symbol.");
-        } else if (quantities == null) {
-            throw new IllegalArgumentException("Please input the quantity.");
-        } else {
-            positionService.addNewPosition(symbols[0], Integer.parseInt(quantities[0]));
-            return "redirect:positions";
-        }
+    @GetMapping("{id}")
+    public Position getSecurity(@PathVariable("id") Long id) {
+       return positionService.getPosition(id);
     }
 
-    @DeleteMapping("/positions/{id}")
-    public String deletePosition(@PathVariable("id") Long id) {
+    @PostMapping(path = "{symbol}/{quantity}")
+    public void addPosition(@PathVariable("symbol") String symbol, @PathVariable("quantity") int quantity) {
+        positionService.addNewPosition(symbol, quantity);
+    }
+
+    @DeleteMapping("{id}")
+    public void deletePosition(@PathVariable("id") Long id) {
         positionService.deletePosition(id);
-        return "redirect:/positions";
     }
 
-    @PutMapping("/positions/{id}")
-    public String updatePosition(Position newPosition) {
+    @PutMapping("{id}")
+    public void updatePosition(Position newPosition) {
         positionService.updatePosition(newPosition);
-        return "redirect:/positions";
-    }
-
-    @GetMapping("/positions/{id}")
-    public String getSecurity(@PathVariable("id") Long id, Model m) {
-        Position c= positionService.getPosition(id);
-        m.addAttribute("c", c);
-        return "editPosition";
     }
 }
