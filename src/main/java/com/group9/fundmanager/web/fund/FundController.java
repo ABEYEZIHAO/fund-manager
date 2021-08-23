@@ -29,9 +29,9 @@ public class FundController {
         return fundService.getFund(id);
     }
 
-	@PostMapping("{fund_name}/{manager_id}/{position_id}")
-    public void addFund(@PathVariable("fund_name") String fundName, @PathVariable("manager_id") Long mId, @PathVariable("position_id") Long pId) {
-        fundService.addNewFund(fundName, mId, pId);
+	@PostMapping
+    public void addFund(@RequestBody Fund newFund) {
+        fundService.addNewFund(newFund);
     }
 
     @DeleteMapping("{id}")
@@ -39,9 +39,9 @@ public class FundController {
         fundService.deleteFund(id);
     }
 
-    @PutMapping("{id}/{fund_name}/{manager_id}")
-    public void updateFund(@PathVariable("id") Long id, @PathVariable("fund_name") String fundName, @PathVariable("manager_id") Long mId) throws Exception {
-        fundService.updateFund(id, fundName, mId);
+    @PutMapping("{id}")
+    public void updateFund(@PathVariable("id") Long id, @RequestBody Fund updatedFund) {
+        fundService.updateFund(id, updatedFund);
     }
 }
 
