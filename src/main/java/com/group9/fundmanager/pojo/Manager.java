@@ -2,8 +2,8 @@ package com.group9.fundmanager.pojo;
 
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.JsonIdentityReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
-import org.springframework.lang.Nullable;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -38,6 +38,7 @@ public class Manager implements Serializable {
      *  - @ManyToOne: FetchType.EAGER
      */
     @OneToMany(mappedBy = "manager", cascade = CascadeType.ALL)
+    @JsonManagedReference
     @JsonIdentityReference(alwaysAsId = true)
     private List<Fund> funds;
 

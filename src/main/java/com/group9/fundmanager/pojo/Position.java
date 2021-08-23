@@ -1,6 +1,9 @@
 package com.group9.fundmanager.pojo;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIdentityReference;
+import org.hibernate.annotations.Fetch;
+import org.hibernate.annotations.FetchMode;
 
 import javax.persistence.*;
 import java.time.LocalDate;
@@ -17,7 +20,8 @@ public class Position {
 
     private Long id;
 
-    @ManyToOne(optional = false)
+    @ManyToOne(optional = false, fetch = FetchType.LAZY)
+    @JsonBackReference
     @JoinColumn(name = "security_id")
     @JsonIdentityReference(alwaysAsId = true)
     private Security security;

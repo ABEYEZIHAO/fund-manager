@@ -1,8 +1,6 @@
 package com.group9.fundmanager.pojo;
 
-import com.fasterxml.jackson.annotation.JsonIdentityInfo;
-import com.fasterxml.jackson.annotation.JsonIdentityReference;
-import com.fasterxml.jackson.annotation.ObjectIdGenerators;
+import com.fasterxml.jackson.annotation.*;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -24,11 +22,13 @@ public class Fund implements Serializable {
 	private String name;
 
 	@ManyToOne(optional = false)
+	@JsonBackReference
 	@JoinColumn(name = "manager_id")
 	@JsonIdentityReference(alwaysAsId = true)
 	private Manager manager;
 
 	@OneToMany
+	@JsonManagedReference
 	@JoinColumn(name = "position_id")
 	@JsonIdentityReference(alwaysAsId = true)
 	private List<Position> positions;
