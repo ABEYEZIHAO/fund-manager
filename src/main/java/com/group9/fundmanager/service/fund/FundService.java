@@ -60,6 +60,7 @@ public class FundService {
      * Add a new fund
      * @param name name of the fund
      * @param managerId ID of the manager
+     * @param positionId ID of a position
      */
     public void addNewFund(String name, Long managerId, Long positionId) {
         Optional<Fund> existingFund = fundDao.findFundByName(name);
