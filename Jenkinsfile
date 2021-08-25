@@ -54,7 +54,6 @@ pipeline {
         stage('Push docker image to Docker Hub') {
             steps {
                 echo 'Pushing to Docker Hub....'
-//                 sh 'mvn dockerfile:push'
             }
         }
         stage('Deploy to Openshift') {
