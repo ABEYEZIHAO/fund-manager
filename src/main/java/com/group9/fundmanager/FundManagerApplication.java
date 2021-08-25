@@ -39,7 +39,7 @@ public class FundManagerApplication {
                     new Security(2L,
                             "AAPL"),
                     new Security(3L,
-                            "ABE")
+                            "C")
             );
 
             List<Security> savedSecurities = securityDao.saveAll(securities);
