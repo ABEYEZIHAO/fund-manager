@@ -11,7 +11,7 @@ import java.util.List;
 /**
  * @author Abe
  */
-@Controller
+@RestController
 @RequestMapping(path = "/api/v1/securities")
 public class SecurityController {
     private final SecurityService securityService;

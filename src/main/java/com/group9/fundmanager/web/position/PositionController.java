@@ -13,7 +13,7 @@ import java.util.List;
 /**
  * @author Dennis
  */
-@Controller
+@RestController
 @RequestMapping(path = "/api/v1/positions")
 public class PositionController {
     private final PositionService positionService;
