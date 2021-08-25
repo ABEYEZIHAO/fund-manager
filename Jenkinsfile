@@ -52,6 +52,7 @@ pipeline {
             agent any
             steps {
 //                 sh 'sh cmd.sh'
+                echo 'Run docker container'
             }
         }
         stage('Push docker image to Docker Hub') {
