@@ -3,7 +3,6 @@ package com.group9.fundmanager.web.security;
 import com.group9.fundmanager.pojo.Security;
 import com.group9.fundmanager.service.security.SecurityService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -43,7 +42,7 @@ public class SecurityController {
     }
 
     @PutMapping("{id}")
-    public void updateSecurity(@PathVariable("id") Long id, Security newSecurity) {
+    public void updateSecurity(@PathVariable("id") Long id, @RequestBody Security newSecurity) {
         securityService.updateSecurity(id, newSecurity);
     }
 }
