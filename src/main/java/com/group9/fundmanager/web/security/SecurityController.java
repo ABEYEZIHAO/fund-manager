@@ -12,6 +12,7 @@ import java.util.List;
  * @author Abe
  */
 @RestController
+@CrossOrigin
 @RequestMapping(path = "/api/v1/securities")
 public class SecurityController {
     private final SecurityService securityService;
