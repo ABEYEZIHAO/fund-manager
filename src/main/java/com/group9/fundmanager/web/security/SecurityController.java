@@ -33,7 +33,7 @@ public class SecurityController {
     }
 
     @PostMapping
-    public void addSecurity(Security newSecurity) {
+    public void addSecurity(@RequestBody Security newSecurity) {
         securityService.addNewSecurity(newSecurity);
     }
 
