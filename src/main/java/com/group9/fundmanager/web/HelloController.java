@@ -6,13 +6,14 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
  
+/**
+ * @author abe
+ */
 @Controller
 public class HelloController {
  
-    @RequestMapping("/index")
+    @RequestMapping
     public String hello(Model m) throws Exception {
-    	m.addAttribute("now", DateFormat.getDateTimeInstance().format(new Date()));
-
-        return "index";
+        return "funds";
     }
 }
