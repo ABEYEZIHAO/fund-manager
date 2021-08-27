@@ -46,7 +46,7 @@
             <a href="?start=${page.number+1}">[next]</a>
             <a href="?start=${page.totalPages-1}">[last page]</a>
 			<a href="index">[index]</a>
-			<a href="managers">[funds]</a>
+			<a href="funds">[funds]</a>
 			<a href="positions">[positions]</a>
 			<a href="securities">[securities]</a>
 	</div>

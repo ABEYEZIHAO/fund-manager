@@ -50,8 +50,8 @@
             <a href="?start=${page.number+1}">[next]</a>
             <a href="?start=${page.totalPages-1}">[last page]</a>
 			<a href="index">[index]</a>
-			<a href="managers">[funds]</a>
-			<a href="positions">[managers]</a>
+			<a href="funds">[funds]</a>
+			<a href="managers">[managers]</a>
 			<a href="securities">[securities]</a>
 	</div>
 	<br>
