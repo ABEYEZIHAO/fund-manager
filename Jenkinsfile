@@ -13,7 +13,7 @@ pipeline {
     agent any
 
     stages {
-        stage('Build') {
+        stage('Build Maven') {
             agent {
                 docker {
                     image 'maven:3-jdk-11'
@@ -24,7 +24,7 @@ pipeline {
                 sh 'mvn -B -DskipTests clean package'
             }
         }
-        stage('Test') {
+        stage('Test Maven') {
             agent {
                 docker {
                     image 'maven:3-jdk-11'
@@ -41,18 +41,11 @@ pipeline {
                 }
             }
         }
-        stage('Build docker image') {
+        stage('Build Docker Image') {
             agent any
             steps {
                 sh "docker build -f Dockerfile-mysql -t ${dockerImageTag_mysql} ."
                 sh "docker build -f Dockerfile-app -t ${dockerImageTag_app} ."
-            }
-        }
-        stage('Run docker container') {
-            agent any
-            steps {
-//                 sh 'sh cmd.sh'
-                echo 'Run docker container'
             }
         }
         stage('Push docker image to Docker Hub') {
@@ -60,7 +53,7 @@ pipeline {
                 echo 'Pushing to Docker Hub....'
             }
         }
-        stage('Deploy to Openshift') {
+        stage('Deploy Using Openshift') {
             agent any
             steps {
                 sh "oc login https://devopsapac45.conygre.com:8443 --username admin --password admin --insecure-skip-tls-verify=true"
