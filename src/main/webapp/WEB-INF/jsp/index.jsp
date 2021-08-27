@@ -20,7 +20,7 @@
 
 
   //url指定要访问的数据库和访问数据库的用户及密码
-  String url = "jdbc:mysql://localhost/"+db_name+"?user="+user_name+"&password="+password;
+  String url = "jdbc:mysql://localhost:3306/"+db_name+"?user="+user_name+"&password="+password;
   //加载mysql数据库驱动
   Class.forName(driver_name);
   Connection conn = DriverManager.getConnection(url);
