@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class HelloController {
  
     @RequestMapping
-    public String hello(Model m) throws Exception {
-        return "funds";
+    public String hello()  {
+        return "redirect:funds";
     }
 }
